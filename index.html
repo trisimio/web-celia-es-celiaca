@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Celia es Celiaca — Pop-Rock Alternativo desde Madrid</title>
+  <meta name="description" content="Celia es Celiaca: el hijo bastardo de Kylie Minogue y Motorhead en un dia complicado a mediados de enero. Pop-rock alternativo y punk desde Madrid. Subterfuge Records.">
+  <meta name="keywords" content="Celia es Celiaca, pop-rock, punk, Madrid, Subterfuge Records, musica alternativa, Dover">
+  <meta name="author" content="Celia es Celiaca">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Celia es Celiaca — Pop-Rock Alternativo desde Madrid">
+  <meta property="og:description" content="El hijo bastardo de Kylie Minogue y Motorhead en un dia complicado a mediados de enero. MUERTE AL PAN!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://celiaesceliaca.com">
+  <meta property="og:locale" content="es_ES">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Celia es Celiaca">
+  <meta name="twitter:description" content="Pop-rock alternativo y punk desde Madrid. MUERTE AL PAN!">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "Celia es Celiaca",
+    "alternateName": "CEC",
+    "description": "Banda de pop-rock alternativo y punk de Madrid. El hijo bastardo de Kylie Minogue y Motorhead.",
+    "genre": ["Pop-Rock Alternativo", "Punk"],
+    "foundingDate": "2012",
+    "foundingLocation": {
+      "@type": "Place",
+      "name": "Madrid, Spain"
+    },
+    "member": [
+      {"@type": "Person", "name": "Celia", "roleName": "Voz y guitarra"},
+      {"@type": "Person", "name": "Bor", "roleName": "Guitarra"},
+      {"@type": "Person", "name": "Jesus Antunez", "roleName": "Bateria"},
+      {"@type": "Person", "name": "Alvaro Gomez", "roleName": "Bajo"},
+      {"@type": "Person", "name": "Miguel L. Garrido", "roleName": "Guitarra"}
+    ],
+    "album": [
+      {"@type": "MusicAlbum", "name": "Kosmos", "datePublished": "2016"},
+      {"@type": "MusicAlbum", "name": "Despechos de Autor", "datePublished": "2019"},
+      {"@type": "MusicAlbum", "name": "Melodias EP", "datePublished": "2023"},
+      {"@type": "MusicAlbum", "name": "Pretendientes Contundentes", "datePublished": "2026"}
+    ],
+    "sameAs": [
+      "https://open.spotify.com/artist/2Sq78UsNGrY3Myqs1Tbu0d",
+      "https://www.instagram.com/celiaesceliaca",
+      "https://www.youtube.com/channel/UCw60jpCcry5FCtTD14shYbg",
+      "https://celiaesceliaca.bandcamp.com",
+      "https://x.com/celiaesceliaca",
+      "https://www.facebook.com/CeliaEsCeliaca"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- LOADING SCREEN                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__content">
+      <div class="loader__name glitch" data-text="CELIA ES CELIACA">CELIA ES CELIACA</div>
+      <div class="loader__bar">
+        <div class="loader__progress"></div>
+      </div>
+      <div class="loader__motto">MUERTE AL PAN</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- NAVIGATION                                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo" aria-label="Inicio">CEC</a>
+      <nav class="nav__links" id="navLinks" aria-label="Navegacion principal">
+        <a href="#bio" class="nav__link">Bio</a>
+        <a href="#musica" class="nav__link">Musica</a>
+        <a href="#videos" class="nav__link">Videos</a>
+        <a href="#fotos" class="nav__link">Fotos</a>
+        <a href="#conciertos" class="nav__link">Conciertos</a>
+        <a href="#prensa" class="nav__link">Prensa</a>
+        <a href="#contacto" class="nav__link">Contacto</a>
+      </nav>
+      <div class="nav__social">
+        <a href="https://open.spotify.com/artist/2Sq78UsNGrY3Myqs1Tbu0d" target="_blank" rel="noopener" aria-label="Spotify" class="nav__social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/celiaesceliaca" target="_blank" rel="noopener" aria-label="Instagram" class="nav__social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/channel/UCw60jpCcry5FCtTD14shYbg" target="_blank" rel="noopener" aria-label="YouTube" class="nav__social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+      <button class="nav__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-menu__nav">
+      <a href="#bio" class="mobile-menu__link">Bio</a>
+      <a href="#musica" class="mobile-menu__link">Musica</a>
+      <a href="#videos" class="mobile-menu__link">Videos</a>
+      <a href="#fotos" class="mobile-menu__link">Fotos</a>
+      <a href="#conciertos" class="mobile-menu__link">Conciertos</a>
+      <a href="#prensa" class="mobile-menu__link">Prensa</a>
+      <a href="#contacto" class="mobile-menu__link">Contacto</a>
+    </nav>
+    <div class="mobile-menu__social">
+      <a href="https://open.spotify.com/artist/2Sq78UsNGrY3Myqs1Tbu0d" target="_blank" rel="noopener" aria-label="Spotify">Spotify</a>
+      <a href="https://www.instagram.com/celiaesceliaca" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+      <a href="https://www.youtube.com/channel/UCw60jpCcry5FCtTD14shYbg" target="_blank" rel="noopener" aria-label="YouTube">YouTube</a>
+    </div>
+    <div class="mobile-menu__motto">MUERTE AL PAN</div>
+  </div>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- HERO                                        -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <div class="hero__noise"></div>
+      <div class="hero__particles" aria-hidden="true">
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+      </div>
+    </div>
+    <div class="hero__content">
+      <p class="hero__label">Pop-Rock Alternativo / Punk — Madrid</p>
+      <h1 class="hero__title glitch" data-text="CELIA ES CELIACA">CELIA ES CELIACA</h1>
+      <p class="hero__tagline">El hijo bastardo de Kylie Minogue y Motorhead<br>en un dia complicado a mediados de enero</p>
+      <div class="hero__ctas">
+        <a href="#musica" class="btn btn--primary">Escuchar</a>
+        <a href="#conciertos" class="btn btn--outline">Proximos conciertos</a>
+      </div>
+      <div class="hero__badge" aria-hidden="true">MUERTE AL PAN!</div>
+    </div>
+    <div class="hero__scroll-indicator" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BIO                                         -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section bio" id="bio">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__number">// 001</span>
+        <h2 class="section__title reveal">Biografia</h2>
+      </div>
+      <div class="bio__grid">
+        <div class="bio__text reveal">
+          <p class="bio__intro">Celia es Celiaca nacio en Madrid en 2012 de la mano de Celia y Bor. Estan aqui para crear canciones, sudar en directo y hacer el imbecil. El hijo bastardo de Kylie Minogue y Motorhead en un dia complicado a mediados de enero.</p>
+          <p>En 2023 la formacion se convirtio en cuarteto con la incorporacion de <strong>Jesus Antunez</strong> (bateria, ex-Dover) y <strong>Alvaro Gomez</strong> (bajo, ex-Dover). En 2025 ficharon por <strong>Subterfuge Records</strong> y arrancaron una nueva etapa con singles como "La Solucion al Problema", "Sugestion", "No me dejas dormir", "Mucha Gente" y "Las Siete Menos Diez".</p>
+          <p>Su tercer album <em>Pretendientes Contundentes</em> salio el 6 de febrero de 2026: 12 canciones de pop-rock alternativo que combinan nostalgia, aprendizaje y celebracion con ironia, honestidad y emocion sin perder contundencia. Influencias: Foo Fighters, No Doubt, Sexy Zebras, Muse, Garbage, Maneskin.</p>
+          <div class="bio__pills">
+            <span class="pill pill--netflix">Netflix "A Cantar!" Ep.2</span>
+            <span class="pill pill--tv">La Que Se Avecina</span>
+            <span class="pill pill--award">Premios MIN 2026</span>
+          </div>
+          <div class="bio__stats">
+            <div class="stat reveal">
+              <span class="stat__number" data-count="4">0</span>
+              <span class="stat__label">Discos</span>
+            </div>
+            <div class="stat reveal">
+              <span class="stat__number" data-count="2012">0</span>
+              <span class="stat__label">Desde</span>
+            </div>
+            <div class="stat reveal">
+              <span class="stat__number" data-count="5">0</span>
+              <span class="stat__label">Miembros</span>
+            </div>
+            <div class="stat reveal">
+              <span class="stat__number" data-count="2">0</span>
+              <span class="stat__label">Ex-Dover</span>
+            </div>
+          </div>
+        </div>
+        <div class="bio__members">
+          <div class="member-card reveal">
+            <div class="member-card__info">
+              <h3 class="member-card__name">Celia</h3>
+              <span class="member-card__role">Voz & Letras</span>
+            </div>
+          </div>
+          <div class="member-card reveal">
+            <div class="member-card__info">
+              <h3 class="member-card__name">Bor</h3>
+              <span class="member-card__role">Guitarra</span>
+            </div>
+          </div>
+          <div class="member-card reveal">
+            <div class="member-card__info">
+              <h3 class="member-card__name">Jesus Antunez</h3>
+              <span class="member-card__role">Bateria & Produccion</span>
+              <span class="member-card__badge">Ex-Dover</span>
+            </div>
+          </div>
+          <div class="member-card reveal">
+            <div class="member-card__info">
+              <h3 class="member-card__name">Alvaro Gomez</h3>
+              <span class="member-card__role">Bajo</span>
+              <span class="member-card__badge">Ex-Dover</span>
+            </div>
+          </div>
+          <div class="member-card reveal">
+            <div class="member-card__info">
+              <h3 class="member-card__name">Miguel</h3>
+              <span class="member-card__role">Directos & Management</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- DISCOGRAFIA                                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section discography" id="musica">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__number">// 002</span>
+        <h2 class="section__title reveal">Discografia</h2>
+      </div>
+
+      <!-- Featured album -->
+      <div class="album-hero reveal">
+        <div class="album-hero__cover">
+          <img src="https://www.subterfuge.com/wp-content/uploads/2026/02/CeC2.jpg" alt="Pretendientes Contundentes - Celia es Celiaca" class="album-hero__img" loading="lazy">
+          <span class="album-hero__badge">NUEVO</span>
+        </div>
+        <div class="album-hero__info">
+          <span class="album-hero__year">2026</span>
+          <h3 class="album-hero__title">Pretendientes Contundentes</h3>
+          <p class="album-hero__label">Subterfuge Records</p>
+          <p class="album-hero__desc">El tercer album de estudio. 12 canciones de pop-rock alternativo que combinan nostalgia, aprendizaje y celebracion con ironia, honestidad y emocion. Producido por Jesus Antunez y Carlos Hernandez Nombela en Estudio 73. Cada cancion esta inspirada y dedicada a alguien: pretendientes muy evidentes y contundentes.</p>
+          <button class="tracklist-toggle" data-album="pretendientes" aria-expanded="false">
+            Ver tracklist <span class="tracklist-toggle__icon">+</span>
+          </button>
+          <div class="tracklist" id="tracklist-pretendientes" hidden>
+            <ol>
+              <li>Con flores</li>
+              <li>Las siete menos diez</li>
+              <li>Sugestion</li>
+              <li>Que mas da</li>
+              <li>Como quieres que te soporte</li>
+              <li>La solucion al problema</li>
+              <li>No me dejas dormir</li>
+              <li>Contra todo proposito</li>
+              <li>Monstruos</li>
+              <li>Mucha gente</li>
+              <li>Es eso</li>
+              <li>La musica</li>
+            </ol>
+          </div>
+          <div class="album-hero__links">
+            <a href="https://open.spotify.com/artist/2Sq78UsNGrY3Myqs1Tbu0d" target="_blank" rel="noopener" class="btn btn--sm btn--spotify">Spotify</a>
+            <a href="https://music.apple.com/us/artist/celia-es-cel%C3%ADaca/1128918022" target="_blank" rel="noopener" class="btn btn--sm btn--outline">Apple Music</a>
+            <a href="https://celiaesceliaca.bandcamp.com" target="_blank" rel="noopener" class="btn btn--sm btn--outline">Bandcamp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Previous albums -->
+      <div class="albums-grid">
+        <div class="album-card reveal">
+          <div class="album-card__cover">
+            <img src="https://www.subterfuge.com/wp-content/uploads/2025/09/1x1-instagram-1-300x300.png" alt="Melodias EP - Celia es Celiaca" class="album-card__img" loading="lazy">
+          </div>
+          <div class="album-card__info">
+            <span class="album-card__year">2023</span>
+            <h4 class="album-card__title">Melodias EP</h4>
+            <button class="tracklist-toggle" data-album="melodias" aria-expanded="false">
+              Tracklist <span class="tracklist-toggle__icon">+</span>
+            </button>
+            <div class="tracklist" id="tracklist-melodias" hidden>
+              <ol>
+                <li>Melodias</li>
+                <li>Nadie Se Acuerda De Ti</li>
+                <li>Regresion Millennial</li>
+                <li>Chotis y Gatos</li>
+                <li>Brujas</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="album-card reveal">
+          <div class="album-card__cover">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSsBsOl103u2IMVybmdtZ2i2I-fgdFOUhrJ-Iq3XfU7bIGRqMpv0v7ppkE5Y2DZ8qQ5WwblHSgGLx12gyD8zje4BBQ3B-ugnThHL-6-9ehA-rF1Ruzy99Fq5huKFxGh4Xou1WRVJv5Ri8/s400/Dxv_rd-WsAEwKya.jpg" alt="Despechos de Autor - Celia es Celiaca" class="album-card__img" loading="lazy">
+          </div>
+          <div class="album-card__info">
+            <span class="album-card__year">2018</span>
+            <h4 class="album-card__title">Despechos de Autor</h4>
+            <button class="tracklist-toggle" data-album="despechos" aria-expanded="false">
+              Tracklist <span class="tracklist-toggle__icon">+</span>
+            </button>
+            <div class="tracklist" id="tracklist-despechos" hidden>
+              <ol>
+                <li>Mamoneo</li>
+                <li>Reinas</li>
+                <li>I+D+i (ota)</li>
+                <li>Hoy No</li>
+                <li>Los Lunes Al Sol</li>
+                <li>Portugal</li>
+                <li>Vete a la Mierda</li>
+                <li>Caribe</li>
+                <li>Todos Caemos Igual</li>
+                <li>Por Amor al Arte</li>
+                <li>Tu Vieja</li>
+                <li>Tonto el Ultimo que se Ria</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="album-card reveal">
+          <div class="album-card__cover">
+            <div class="album-card__placeholder" style="--album-hue: 180">
+              <span>Kosmos</span>
+            </div>
+          </div>
+          <div class="album-card__info">
+            <span class="album-card__year">2016</span>
+            <h4 class="album-card__title">Kosmos</h4>
+            <button class="tracklist-toggle" data-album="kosmos" aria-expanded="false">
+              Tracklist <span class="tracklist-toggle__icon">+</span>
+            </button>
+            <div class="tracklist" id="tracklist-kosmos" hidden>
+              <ol>
+                <li>Septiembre</li>
+                <li>Crisis de los 25</li>
+                <li>Vamos a Contar Mentiras</li>
+                <li>Tonto el Ultimo que se Ria</li>
+                <li>I+D+i (ota)</li>
+                <li>Caravana del Amor</li>
+                <li>Kosmos</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- VIDEOS                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section videos" id="videos">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__number">// 003</span>
+        <h2 class="section__title reveal">Videos</h2>
+      </div>
+
+      <!-- Featured video: Mucha Gente -->
+      <div class="video-featured reveal">
+        <div class="video-thumb" data-youtube="VPKst54SxVQ" role="button" tabindex="0" aria-label="Reproducir video: Mucha Gente">
+          <div class="video-thumb__overlay">
+            <div class="video-thumb__play">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <img src="https://img.youtube.com/vi/VPKst54SxVQ/maxresdefault.jpg" alt="Mucha Gente - Celia es Celiaca" class="video-thumb__img" loading="lazy">
+        </div>
+        <h3 class="video-featured__title">Mucha Gente</h3>
+      </div>
+
+      <!-- Video grid -->
+      <div class="videos-grid">
+        <div class="video-card reveal">
+          <div class="video-thumb" data-youtube="28U7edg9ON8" role="button" tabindex="0" aria-label="Reproducir video: La Solucion al Problema">
+            <div class="video-thumb__overlay">
+              <div class="video-thumb__play">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <img src="https://img.youtube.com/vi/28U7edg9ON8/hqdefault.jpg" alt="La Solucion al Problema" class="video-thumb__img" loading="lazy">
+          </div>
+          <h4 class="video-card__title">La Solucion al Problema (Lyric Video)</h4>
+        </div>
+        <div class="video-card reveal">
+          <div class="video-thumb" data-youtube="jxkv3uXwY_I" role="button" tabindex="0" aria-label="Reproducir video: Sugestion">
+            <div class="video-thumb__overlay">
+              <div class="video-thumb__play">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <img src="https://img.youtube.com/vi/jxkv3uXwY_I/hqdefault.jpg" alt="Sugestion" class="video-thumb__img" loading="lazy">
+          </div>
+          <h4 class="video-card__title">Sugestion</h4>
+        </div>
+        <div class="video-card reveal">
+          <div class="video-thumb" data-youtube="ZkUILBlfBZk" role="button" tabindex="0" aria-label="Reproducir video: No me dejas dormir">
+            <div class="video-thumb__overlay">
+              <div class="video-thumb__play">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <img src="https://img.youtube.com/vi/ZkUILBlfBZk/hqdefault.jpg" alt="No me dejas dormir" class="video-thumb__img" loading="lazy">
+          </div>
+          <h4 class="video-card__title">No me dejas dormir</h4>
+        </div>
+      </div>
+
+      <!-- More videos -->
+      <div class="videos-grid" style="margin-top: var(--space-lg)">
+        <div class="video-card reveal">
+          <div class="video-thumb" data-youtube="vJQQ7C0kDjg" role="button" tabindex="0" aria-label="Reproducir video: Septiembre">
+            <div class="video-thumb__overlay">
+              <div class="video-thumb__play">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <img src="https://img.youtube.com/vi/vJQQ7C0kDjg/hqdefault.jpg" alt="Septiembre - Video Oficial" class="video-thumb__img" loading="lazy">
+          </div>
+          <h4 class="video-card__title">Septiembre (Video Oficial)</h4>
+        </div>
+        <div class="video-card reveal">
+          <div class="video-thumb" data-youtube="gQTanZxnVSw" role="button" tabindex="0" aria-label="Reproducir video: Regresion Millennial">
+            <div class="video-thumb__overlay">
+              <div class="video-thumb__play">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <img src="https://img.youtube.com/vi/gQTanZxnVSw/hqdefault.jpg" alt="Regresion Millennial" class="video-thumb__img" loading="lazy">
+          </div>
+          <h4 class="video-card__title">Regresion Millennial</h4>
+        </div>
+        <div class="video-card reveal">
+          <div class="video-thumb" data-youtube="mwV5TG5TK5M" role="button" tabindex="0" aria-label="Reproducir video: Brujas">
+            <div class="video-thumb__overlay">
+              <div class="video-thumb__play">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <img src="https://img.youtube.com/vi/mwV5TG5TK5M/hqdefault.jpg" alt="Brujas - Videoclip" class="video-thumb__img" loading="lazy">
+          </div>
+          <h4 class="video-card__title">Brujas (Videoclip)</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FOTOS                                       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section photos" id="fotos">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__number">// 004</span>
+        <h2 class="section__title reveal">Fotos</h2>
+      </div>
+      <div class="photos-grid">
+        <div class="photo-item photo-item--tall reveal" role="button" tabindex="0" data-index="0" data-src="https://www.subterfuge.com/wp-content/uploads/2025/02/CELIACELIACA_IMG_4562-V-web-981x1024.jpg" aria-label="Celia - retrato">
+          <img src="https://www.subterfuge.com/wp-content/uploads/2025/02/CELIACELIACA_IMG_4562-V-web-981x1024.jpg" alt="Celia - retrato" class="photo-item__img" loading="lazy">
+          <div class="photo-item__overlay">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </div>
+        <div class="photo-item reveal" role="button" tabindex="0" data-index="1" data-src="https://www.subterfuge.com/wp-content/uploads/2025/02/Celia-es-Celiaca-web.jpg" aria-label="Celia es Celiaca - banda">
+          <img src="https://www.subterfuge.com/wp-content/uploads/2025/02/Celia-es-Celiaca-web-1100x580.jpg" alt="Celia es Celiaca - la banda" class="photo-item__img" loading="lazy">
+          <div class="photo-item__overlay">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </div>
+        <div class="photo-item reveal" role="button" tabindex="0" data-index="2" data-src="https://www.subterfuge.com/wp-content/uploads/2025/09/Celia-portada.png" aria-label="Celia es Celiaca - promo No me dejas dormir">
+          <img src="https://www.subterfuge.com/wp-content/uploads/2025/09/Celia-portada-1100x580.png" alt="Celia es Celiaca - promo" class="photo-item__img" loading="lazy">
+          <div class="photo-item__overlay">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </div>
+        <div class="photo-item photo-item--wide reveal" role="button" tabindex="0" data-index="3" data-src="https://i0.wp.com/www.culturamas.es/wp-content/uploads/2025/11/celia2.jpeg?fit=757%2C425&ssl=1" aria-label="Celia es Celiaca - en directo Sala Siroco">
+          <img src="https://i0.wp.com/www.culturamas.es/wp-content/uploads/2025/11/celia2.jpeg?fit=757%2C425&ssl=1" alt="Celia es Celiaca en directo - Sala Siroco" class="photo-item__img" loading="lazy">
+          <div class="photo-item__overlay">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </div>
+        <div class="photo-item reveal" role="button" tabindex="0" data-index="4" data-src="https://www.subterfuge.com/wp-content/uploads/2025/02/Celia-es-Celiaca-La-Solucion-Al-Problema-1-300x300.jpeg" aria-label="La Solucion al Problema - single artwork">
+          <img src="https://www.subterfuge.com/wp-content/uploads/2025/02/Celia-es-Celiaca-La-Solucion-Al-Problema-1-300x300.jpeg" alt="La Solucion al Problema - artwork" class="photo-item__img" loading="lazy">
+          <div class="photo-item__overlay">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </div>
+        <div class="photo-item photo-item--tall reveal" role="button" tabindex="0" data-index="5" data-src="https://www.subterfuge.com/wp-content/uploads/2026/01/final_24241767606409.jpg" aria-label="Celia es Celiaca - promo album">
+          <img src="https://www.subterfuge.com/wp-content/uploads/2026/01/final_24241767606409.jpg" alt="Celia es Celiaca - promo album" class="photo-item__img" loading="lazy">
+          <div class="photo-item__overlay">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="photos__cta reveal">
+        <a href="https://www.instagram.com/celiaesceliaca" target="_blank" rel="noopener" class="btn btn--outline">Mas fotos en @celiaesceliaca</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- CONCIERTOS                                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section concerts" id="conciertos">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__number">// 005</span>
+        <h2 class="section__title reveal">Conciertos</h2>
+      </div>
+      <div class="concerts-list">
+        <p class="concerts-list__note reveal" style="color: var(--gray-300); font-family: var(--font-mono); font-size: var(--size-sm); margin-bottom: var(--space-lg);">Consulta nuestras redes para fechas actualizadas. Nuevas fechas pronto.</p>
+
+        <!-- Past -->
+        <div class="concert-item concert-item--past reveal">
+          <div class="concert-item__date">
+            <span class="concert-item__day">27</span>
+            <span class="concert-item__month">FEB</span>
+          </div>
+          <div class="concert-item__info">
+            <h4 class="concert-item__venue">Sala Picaro</h4>
+            <span class="concert-item__city">Toledo — con Zona Zero</span>
+          </div>
+          <span class="concert-item__sold">Finalizado</span>
+        </div>
+        <div class="concert-item concert-item--past reveal">
+          <div class="concert-item__date">
+            <span class="concert-item__day">06</span>
+            <span class="concert-item__month">FEB</span>
+          </div>
+          <div class="concert-item__info">
+            <h4 class="concert-item__venue">Lanzamiento "Pretendientes Contundentes"</h4>
+            <span class="concert-item__city">Subterfuge Records</span>
+          </div>
+          <span class="concert-item__sold">Publicado</span>
+        </div>
+        <div class="concert-item concert-item--past reveal">
+          <div class="concert-item__date">
+            <span class="concert-item__day">13</span>
+            <span class="concert-item__month">NOV</span>
+          </div>
+          <div class="concert-item__info">
+            <h4 class="concert-item__venue">Sala Siroco</h4>
+            <span class="concert-item__city">Madrid — con Venga, Bea</span>
+          </div>
+          <span class="concert-item__sold">Agotado</span>
+        </div>
+      </div>
+      <div class="concerts-cta reveal" style="margin-top: var(--space-lg)">
+        <a href="https://www.instagram.com/celiaesceliaca" target="_blank" rel="noopener" class="btn btn--outline">Seguir en Instagram para nuevas fechas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PRENSA                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section press" id="prensa">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__number">// 006</span>
+        <h2 class="section__title reveal">Prensa</h2>
+      </div>
+
+      <div class="press-quotes">
+        <div class="press-quote reveal">
+          <blockquote>
+            <span class="press-quote__mark">&ldquo;</span>
+            <p>El rock divertido y contundente de Celia es Celiaca. Su directo en Sala Siroco fue pura energia y adrenalina.</p>
+            <cite>— <a href="https://www.culturamas.es/2025/11/13/el-rock-divertido-y-contundente-de-celia-es-celiaca/" target="_blank" rel="noopener">Culturamas</a></cite>
+          </blockquote>
+        </div>
+        <div class="press-quote reveal">
+          <blockquote>
+            <span class="press-quote__mark">&ldquo;</span>
+            <p>Pop? Si. Rock? Tambien. Capaz de pasar con facilidad pasmosa de la dureza a la dulzura. "Todos caemos igual" es emocionante, intensa y poderosa desde el primer segundo.</p>
+            <cite>— <a href="https://www.elgiradiscos.com/2019/03/celia-es-celiaca-despechos-de-autor.html" target="_blank" rel="noopener">El Giradiscos</a></cite>
+          </blockquote>
+        </div>
+        <div class="press-quote reveal">
+          <blockquote>
+            <span class="press-quote__mark">&ldquo;</span>
+            <p>Punk, critica social y el nuevo single "Como quieres que te soporte". Celia es Celiaca tiene influencias de Paramore y los primeros Dover, pero con personalidad propia de sobra.</p>
+            <cite>— <a href="https://fotkai.es/en/celia-es-celiaca-entrevista-2026" target="_blank" rel="noopener">FOTKAI</a></cite>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="press-appearances reveal">
+        <h3 class="press-appearances__title">Apariciones</h3>
+        <div class="press-pills">
+          <span class="pill pill--netflix">Netflix "A Cantar!" Ep.2</span>
+          <span class="pill pill--tv">La Que Se Avecina (Sept. 2026)</span>
+          <span class="pill pill--award">Premios MIN 2026</span>
+          <a href="https://www.subterfuge.com/artistas/celia-es-celiaca/" target="_blank" rel="noopener" class="pill pill--label">Subterfuge Records</a>
+          <a href="https://www.culturamas.es/2025/11/13/el-rock-divertido-y-contundente-de-celia-es-celiaca/" target="_blank" rel="noopener" class="pill pill--press">Culturamas</a>
+          <a href="https://fotkai.es/en/celia-es-celiaca-entrevista-2026" target="_blank" rel="noopener" class="pill pill--press">FOTKAI</a>
+          <a href="https://www.elgiradiscos.com/2019/03/celia-es-celiaca-despechos-de-autor.html" target="_blank" rel="noopener" class="pill pill--press">El Giradiscos</a>
+          <a href="https://www.rocktotal.com/celia-es-celiaca-presenta-regresion-millennial/" target="_blank" rel="noopener" class="pill pill--press">RockTotal</a>
+          <a href="https://www.publico.es/culturas/celia-celiaca-celia.html" target="_blank" rel="noopener" class="pill pill--press">Publico</a>
+          <a href="https://premiosmin.com/candidate/celia-es-celiaca" target="_blank" rel="noopener" class="pill pill--press">Premios MIN</a>
+        </div>
+      </div>
+
+      <div class="press-kit reveal">
+        <div class="press-kit__content">
+          <h3>Press Kit</h3>
+          <p>Fotos de prensa en alta resolucion, bio, rider tecnico y logos.</p>
+          <a href="#contacto" class="btn btn--outline">Solicitar Press Kit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- CONTACTO                                    -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="section contact" id="contacto">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__number">// 007</span>
+        <h2 class="section__title reveal">Contacto</h2>
+      </div>
+      <div class="contact__grid">
+        <div class="contact__info reveal">
+          <h3 class="contact__subtitle">Booking & Management</h3>
+          <p>Para contrataciones, colaboraciones, prensa o cualquier consulta.</p>
+          <div class="contact__details">
+            <div class="contact__detail">
+              <span class="contact__detail-label">Email</span>
+              <a href="mailto:booking@celiaesceliaca.com">booking@celiaesceliaca.com</a>
+            </div>
+            <div class="contact__detail">
+              <span class="contact__detail-label">Sello</span>
+              <a href="https://www.subterfuge.com/artistas/celia-es-celiaca/" target="_blank" rel="noopener">Subterfuge Records</a>
+            </div>
+          </div>
+          <div class="contact__social-links">
+            <a href="https://open.spotify.com/artist/2Sq78UsNGrY3Myqs1Tbu0d" target="_blank" rel="noopener" class="social-pill social-pill--spotify">Spotify</a>
+            <a href="https://www.instagram.com/celiaesceliaca" target="_blank" rel="noopener" class="social-pill social-pill--instagram">Instagram</a>
+            <a href="https://www.youtube.com/channel/UCw60jpCcry5FCtTD14shYbg" target="_blank" rel="noopener" class="social-pill social-pill--youtube">YouTube</a>
+            <a href="https://x.com/celiaesceliaca" target="_blank" rel="noopener" class="social-pill social-pill--twitter">Twitter / X</a>
+            <a href="https://celiaesceliaca.bandcamp.com" target="_blank" rel="noopener" class="social-pill social-pill--bandcamp">Bandcamp</a>
+            <a href="https://www.tiktok.com/@celiaesceliaca" target="_blank" rel="noopener" class="social-pill social-pill--tiktok">TikTok</a>
+            <a href="https://www.facebook.com/CeliaEsCeliaca" target="_blank" rel="noopener" class="social-pill social-pill--facebook">Facebook</a>
+          </div>
+        </div>
+        <div class="contact__form-wrap reveal">
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" id="contactForm">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="hidden" aria-hidden="true">
+              <label>No rellenar: <input name="bot-field"></label>
+            </p>
+            <div class="form-group">
+              <input type="text" name="name" id="formName" required autocomplete="name" placeholder=" ">
+              <label for="formName">Nombre</label>
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" id="formEmail" required autocomplete="email" placeholder=" ">
+              <label for="formEmail">Email</label>
+            </div>
+            <div class="form-group">
+              <select name="subject" id="formSubject" required>
+                <option value="" disabled selected></option>
+                <option value="booking">Booking / Contratacion</option>
+                <option value="prensa">Prensa / Entrevista</option>
+                <option value="colaboracion">Colaboracion</option>
+                <option value="press-kit">Press Kit</option>
+                <option value="otro">Otro</option>
+              </select>
+              <label for="formSubject">Asunto</label>
+            </div>
+            <div class="form-group">
+              <textarea name="message" id="formMessage" rows="4" required placeholder=" "></textarea>
+              <label for="formMessage">Mensaje</label>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full">Enviar mensaje</button>
+          </form>
+          <div class="contact-form__success" id="formSuccess" hidden>
+            <h3>Mensaje enviado</h3>
+            <p>Te respondemos en cuanto podamos. MUERTE AL PAN!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FOOTER                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <span class="footer__logo">CEC</span>
+          <p class="footer__tagline">Rock sin gluten desde Madrid</p>
+        </div>
+        <nav class="footer__links" aria-label="Enlaces rapidos">
+          <a href="#bio">Bio</a>
+          <a href="#musica">Musica</a>
+          <a href="#videos">Videos</a>
+          <a href="#conciertos">Conciertos</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+        <div class="footer__bottom">
+          <p>&copy; 2026 Celia es Celiaca. Subterfuge Records.</p>
+          <p class="footer__motto">MUERTE AL PAN</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" hidden aria-hidden="true" role="dialog" aria-label="Visor de fotos">
+    <button class="lightbox__close" aria-label="Cerrar">&times;</button>
+    <button class="lightbox__prev" aria-label="Anterior">&lsaquo;</button>
+    <button class="lightbox__next" aria-label="Siguiente">&rsaquo;</button>
+    <div class="lightbox__content"></div>
+    <div class="lightbox__counter"></div>
+  </div>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
