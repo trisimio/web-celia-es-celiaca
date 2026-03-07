@@ -548,15 +548,13 @@ figure {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* Cover the full area regardless of aspect ratio */
   min-width: 100%;
   min-height: 100%;
-  width: 177.78vh; /* 100vh * 16/9 */
-  height: 56.25vw; /* 100vw * 9/16 */
+  width: 177.78vh; /* 100vh * 16/9 — covers vertical screens */
+  height: 56.25vw; /* 100vw * 9/16 — covers horizontal screens */
   transform: translate(-50%, -50%);
   border: none;
   pointer-events: none;
-  opacity: 0.25;
 }
 
 .hero__bg-img {
@@ -566,16 +564,17 @@ figure {
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
-  opacity: 0.3;
+  opacity: 0.4;
 }
 
-/* Fallback image always visible behind video */
-.hero__bg-img {
-  z-index: 0;
-}
-
+/* Desktop: video on top covers the image */
 .hero__video-wrap {
   z-index: 1;
+  opacity: 0.35;
+}
+
+.hero__bg-img {
+  z-index: 0;
 }
 
 /* Floating instrument icons */
@@ -2128,6 +2127,15 @@ figure {
   /* Hero */
   .hero__instruments {
     display: none;
+  }
+
+  /* Mobile: hide video (autoplay blocked), show only bg image */
+  .hero__video-wrap {
+    display: none;
+  }
+
+  .hero__bg-img {
+    opacity: 0.5;
   }
 
   .hero__content {
