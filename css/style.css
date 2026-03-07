@@ -318,10 +318,6 @@ figure {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.nav--hidden {
-  transform: translateY(-100%);
-}
-
 .nav__inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -570,14 +566,16 @@ figure {
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
-  opacity: 0.25;
+  opacity: 0.3;
+}
+
+/* Fallback image always visible behind video */
+.hero__bg-img {
   z-index: 0;
 }
 
-/* Video loaded hides fallback image */
-.hero__video-wrap + .hero__bg-img {
-  opacity: 0;
-  transition: opacity 1s ease;
+.hero__video-wrap {
+  z-index: 1;
 }
 
 /* Floating instrument icons */

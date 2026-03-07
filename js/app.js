@@ -50,11 +50,7 @@
             nav.classList.remove('nav--scrolled');
           }
 
-          if (scrollY > lastScroll && scrollY > 200) {
-            nav.classList.add('nav--hidden');
-          } else {
-            nav.classList.remove('nav--hidden');
-          }
+          // Nav always visible — no hide on scroll
 
           lastScroll = scrollY;
           ticking = false;
