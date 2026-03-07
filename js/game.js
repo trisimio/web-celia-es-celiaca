@@ -310,8 +310,12 @@
     setTimeout(function () { overlay.hidden = true; }, 300);
   }
 
-  // Event listeners
-  trigger.addEventListener('click', openGame);
+  // Event listeners — all MUERTE AL PAN triggers
+  var triggers = document.querySelectorAll('.easter-trigger, #easterEgg');
+  triggers.forEach(function (el) {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', openGame);
+  });
   closeBtn.addEventListener('click', closeGame);
 
   document.addEventListener('keydown', function (e) {
