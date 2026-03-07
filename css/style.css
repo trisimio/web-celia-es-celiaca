@@ -549,9 +549,10 @@ figure {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* Always cover: whichever is larger wins */
-  width: max(180%, 177.78vh);
-  height: max(180%, 56.25vw);
+  /* Cover full viewport including vertical screens — 300vh ensures
+     the 16:9 video is tall enough to fill 9:16 portrait screens */
+  width: max(180%, 300vh);
+  height: max(180%, 170vw);
   transform: translate(-50%, -50%);
   border: none;
   pointer-events: none;
