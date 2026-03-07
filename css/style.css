@@ -548,20 +548,14 @@ figure {
   position: absolute;
   top: 50%;
   left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: 177.78vh; /* 100vh * 16/9 — covers vertical screens */
-  height: 56.25vw; /* 100vw * 9/16 — covers horizontal screens */
+  width: 180%;
+  height: 180%;
   transform: translate(-50%, -50%);
   border: none;
   pointer-events: none;
+  opacity: 0.2;
 }
 
-.hero__video-wrap {
-  z-index: 1;
-}
-
-/* Fallback image — hidden when video loads, visible as safety net */
 .hero__bg-img {
   position: absolute;
   inset: 0;
@@ -569,12 +563,14 @@ figure {
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
+  opacity: 0.25;
   z-index: 0;
 }
 
-/* Dark overlay for text readability over video */
-.hero__noise {
-  z-index: 2;
+/* Video loaded hides fallback image */
+.hero__video-wrap + .hero__bg-img {
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 
 /* Floating instrument icons */
@@ -605,15 +601,6 @@ figure {
 }
 
 .hero__noise {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background:
-    linear-gradient(to bottom, rgba(8, 8, 12, 0.3) 0%, rgba(8, 8, 12, 0.15) 40%, rgba(8, 8, 12, 0.4) 100%);
-}
-
-.hero__noise::after {
-  content: '';
   position: absolute;
   inset: 0;
   opacity: 0.03;
