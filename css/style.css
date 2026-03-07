@@ -548,8 +548,9 @@ figure {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 180%;
-  height: 180%;
+  /* Always cover: whichever is larger wins */
+  width: max(180%, 177.78vh);
+  height: max(180%, 56.25vw);
   transform: translate(-50%, -50%);
   border: none;
   pointer-events: none;
