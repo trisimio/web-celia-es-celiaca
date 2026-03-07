@@ -209,7 +209,8 @@ figure {
   width: clamp(100px, 20vw, 180px);
   height: auto;
   margin-bottom: var(--space-md);
-  margin-left: 10%;
+  position: relative;
+  left: 5%;
   filter: drop-shadow(0 0 30px rgba(251, 164, 162, 0.4));
   animation: logo-pulse 2s ease-in-out infinite alternate;
 }
