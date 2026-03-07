@@ -39,20 +39,17 @@
     var lastScroll = 0;
     var ticking = false;
 
-    // Scroll behavior: show/hide nav + add background
     window.addEventListener('scroll', function () {
       if (!ticking) {
         requestAnimationFrame(function () {
           var scrollY = window.scrollY;
 
-          // Background on scroll
           if (scrollY > 50) {
             nav.classList.add('nav--scrolled');
           } else {
             nav.classList.remove('nav--scrolled');
           }
 
-          // Hide/show on scroll direction
           if (scrollY > lastScroll && scrollY > 200) {
             nav.classList.add('nav--hidden');
           } else {
@@ -66,7 +63,6 @@
       }
     });
 
-    // Hamburger
     hamburger.addEventListener('click', function () {
       var isOpen = hamburger.classList.toggle('active');
       mobileMenu.classList.toggle('active');
@@ -75,7 +71,6 @@
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
-    // Close mobile menu on link click
     mobileLinks.forEach(function (link) {
       link.addEventListener('click', function () {
         hamburger.classList.remove('active');
@@ -86,7 +81,6 @@
       });
     });
 
-    // Smooth scroll for nav links
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
       link.addEventListener('click', function (e) {
         var target = document.querySelector(this.getAttribute('href'));
@@ -113,10 +107,11 @@
   }
 
   // ─── Scroll Reveal ───
+  // This is the ONLY system for entrance animations.
+  // GSAP is NOT used for reveal — it caused inline style conflicts.
   function initScrollReveal() {
     var reveals = document.querySelectorAll('.reveal');
 
-    // Check if reduced motion is preferred
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       reveals.forEach(function (el) {
         el.classList.add('revealed');
@@ -124,14 +119,39 @@
       return;
     }
 
+    // Group reveals by parent section for stagger effect
+    var sectionMap = new Map();
+    reveals.forEach(function (el) {
+      var section = el.closest('.section, .hero');
+      var key = section ? section.id || 'unknown' : 'unknown';
+      if (!sectionMap.has(key)) sectionMap.set(key, []);
+      sectionMap.get(key).push(el);
+    });
+
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
+          var el = entry.target;
+          // Find siblings in same section for stagger
+          var section = el.closest('.section, .hero');
+          var key = section ? section.id || 'unknown' : 'unknown';
+          var siblings = sectionMap.get(key) || [];
+          var idx = siblings.indexOf(el);
+
+          // Apply stagger delay
+          var delay = Math.min(idx * 0.08, 0.5);
+          el.style.transitionDelay = delay + 's';
+
+          el.classList.add('revealed');
+          observer.unobserve(el);
+
+          // Clean up delay after animation
+          setTimeout(function () {
+            el.style.transitionDelay = '';
+          }, (delay + 1) * 1000);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
     reveals.forEach(function (el) {
       observer.observe(el);
@@ -141,8 +161,7 @@
   // ─── Hero Entrance (GSAP) ───
   function initHeroEntrance() {
     if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      // Fallback: just show everything
-      document.querySelectorAll('.hero__label, .hero__title, .hero__tagline, .hero__ctas, .hero__badge').forEach(function (el) {
+      document.querySelectorAll('.hero__logo, .hero__label, .hero__tagline, .hero__ctas, .hero__badge').forEach(function (el) {
         el.style.opacity = '1';
       });
       return;
@@ -150,21 +169,22 @@
 
     var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-    tl.to('.hero__label', { opacity: 1, y: 0, duration: 0.6 })
-      .to('.hero__title', { opacity: 1, y: 0, duration: 0.8 }, '-=0.3')
+    tl.to('.hero__logo', { opacity: 1, scale: 1, duration: 0.8 })
+      .to('.hero__label', { opacity: 1, y: 0, duration: 0.5 }, '-=0.3')
       .to('.hero__tagline', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
       .to('.hero__ctas', { opacity: 1, y: 0, duration: 0.5 }, '-=0.2')
       .to('.hero__badge', { opacity: 1, scale: 1, duration: 0.4 }, '-=0.1');
   }
 
-  // ─── GSAP ScrollTrigger Animations ───
+  // ─── GSAP ScrollTrigger — Parallax & Counters only ───
+  // Reduced from 57 triggers to 7. No more reveal animations via GSAP.
   function initGSAPAnimations() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero parallax
+    // 1. Hero content parallax
     gsap.to('.hero__content', {
       yPercent: -20,
       ease: 'none',
@@ -176,99 +196,66 @@
       }
     });
 
-    // Section titles
-    gsap.utils.toArray('.section__title').forEach(function (title) {
-      gsap.from(title, {
-        x: -40,
-        opacity: 0,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: title,
+    // 2. Hero bg parallax
+    gsap.to('.hero__bg-img', {
+      yPercent: 30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+
+    // 3. Bio image parallax
+    gsap.to('.bio__img', {
+      yPercent: -15,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.bio__image',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+
+    // 4-7. Counter animations (grouped under one trigger per section)
+    var counters = document.querySelectorAll('.stat__number');
+    if (counters.length) {
+      var counterSection = counters[0].closest('.bio__stats');
+      if (counterSection) {
+        var counterObjects = [];
+        counters.forEach(function (counter) {
+          counterObjects.push({
+            el: counter,
+            target: parseInt(counter.getAttribute('data-count')),
+            obj: { val: 0 }
+          });
+        });
+
+        ScrollTrigger.create({
+          trigger: counterSection,
           start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      });
-    });
+          once: true,
+          onEnter: function () {
+            counterObjects.forEach(function (c) {
+              gsap.to(c.obj, {
+                val: c.target,
+                duration: 2,
+                ease: 'power2.out',
+                onUpdate: function () {
+                  c.el.textContent = Math.round(c.obj.val);
+                }
+              });
+            });
+          }
+        });
+      }
+    }
 
-    // Member cards stagger
-    gsap.utils.toArray('.member-card').forEach(function (card, i) {
-      gsap.from(card, {
-        x: 40,
-        opacity: 0,
-        duration: 0.6,
-        delay: i * 0.1,
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      });
-    });
-
-    // Album cards stagger
-    gsap.utils.toArray('.album-card').forEach(function (card, i) {
-      gsap.from(card, {
-        y: 60,
-        opacity: 0,
-        duration: 0.7,
-        delay: i * 0.15,
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      });
-    });
-
-    // Concert items stagger
-    gsap.utils.toArray('.concert-item').forEach(function (item, i) {
-      gsap.from(item, {
-        x: -30,
-        opacity: 0,
-        duration: 0.5,
-        delay: i * 0.1,
-        scrollTrigger: {
-          trigger: item,
-          start: 'top 90%',
-          toggleActions: 'play none none none'
-        }
-      });
-    });
-
-    // Press quotes
-    gsap.utils.toArray('.press-quote').forEach(function (quote, i) {
-      gsap.from(quote, {
-        y: 40,
-        opacity: 0,
-        duration: 0.7,
-        delay: i * 0.15,
-        scrollTrigger: {
-          trigger: quote,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      });
-    });
-
-    // Counter animation
-    gsap.utils.toArray('.stat__number').forEach(function (counter) {
-      var target = parseInt(counter.getAttribute('data-count'));
-      var obj = { val: 0 };
-
-      gsap.to(obj, {
-        val: target,
-        duration: 2,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: counter,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        },
-        onUpdate: function () {
-          counter.textContent = Math.round(obj.val);
-        }
-      });
-    });
+    // Refresh after everything is laid out
+    ScrollTrigger.refresh();
   }
 
   // ─── YouTube Lazy Load ───
@@ -282,7 +269,6 @@
         iframe.allowFullscreen = true;
         iframe.title = thumb.getAttribute('aria-label') || 'Video';
 
-        // Clear contents and add iframe
         thumb.innerHTML = '';
         thumb.appendChild(iframe);
         thumb.style.cursor = 'default';
@@ -332,7 +318,6 @@
       currentIndex = index;
       updateLightbox();
       lightbox.hidden = false;
-      // Force reflow
       lightbox.offsetHeight;
       lightbox.classList.add('active');
       lightbox.setAttribute('aria-hidden', 'false');
@@ -370,7 +355,6 @@
       updateLightbox();
     }
 
-    // Open on photo click
     photos.forEach(function (photo) {
       var handler = function () {
         openLightbox(parseInt(photo.getAttribute('data-index')) || 0);
@@ -388,7 +372,6 @@
     nextBtn.addEventListener('click', showNext);
     prevBtn.addEventListener('click', showPrev);
 
-    // Keyboard navigation
     document.addEventListener('keydown', function (e) {
       if (!lightbox.classList.contains('active')) return;
 
@@ -397,12 +380,10 @@
       if (e.key === 'ArrowLeft') showPrev();
     });
 
-    // Close on backdrop click
     lightbox.addEventListener('click', function (e) {
       if (e.target === lightbox) closeLightbox();
     });
 
-    // Touch swipe support
     var touchStartX = 0;
     var touchEndX = 0;
 
@@ -427,7 +408,6 @@
 
     if (!form) return;
 
-    // Float label fix for select
     var select = form.querySelector('select');
     if (select) {
       select.addEventListener('change', function () {
@@ -471,10 +451,9 @@
     initContactForm();
 
     // Wait for GSAP to load (deferred)
-    if (typeof gsap !== 'undefined') {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       initGSAPAnimations();
     } else {
-      // GSAP loads deferred, wait for it
       var gsapCheck = setInterval(function () {
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
           clearInterval(gsapCheck);
@@ -482,7 +461,6 @@
         }
       }, 100);
 
-      // Give up after 5 seconds
       setTimeout(function () { clearInterval(gsapCheck); }, 5000);
     }
   });
