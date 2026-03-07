@@ -552,12 +552,15 @@ figure {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 180%;
-  height: 180%;
+  /* Cover the full area regardless of aspect ratio */
+  min-width: 100%;
+  min-height: 100%;
+  width: 177.78vh; /* 100vh * 16/9 */
+  height: 56.25vw; /* 100vw * 9/16 */
   transform: translate(-50%, -50%);
   border: none;
   pointer-events: none;
-  opacity: 0.2;
+  opacity: 0.25;
 }
 
 .hero__bg-img {
@@ -2127,10 +2130,6 @@ figure {
   /* Hero */
   .hero__instruments {
     display: none;
-  }
-
-  .hero__video {
-    opacity: 0.12;
   }
 
   .hero__content {
