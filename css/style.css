@@ -82,6 +82,8 @@ body {
   color: var(--white);
   background: var(--black);
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
 }
 
 body.loading {
@@ -1385,6 +1387,7 @@ figure {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
 .photo-item--tall {
@@ -2031,7 +2034,353 @@ figure {
    RESPONSIVE
    ═══════════════════════════════════════════ */
 
-/* Tablet (768px+) */
+/* ── iOS safe areas ── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .hero {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .footer {
+    padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom));
+  }
+
+  .mobile-menu {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .lightbox {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+}
+
+/* ── Tiny screens (< 375px) ── */
+@media (max-width: 374px) {
+  :root {
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-section: 3rem;
+  }
+
+  .hero__logo {
+    width: clamp(100px, 35vw, 140px);
+  }
+
+  .hero__tagline {
+    font-size: var(--size-sm);
+  }
+
+  .hero__badge {
+    font-size: var(--size-sm);
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .bio__stats {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+  }
+
+  .stat__number {
+    font-size: var(--size-lg);
+  }
+
+  .albums-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .videos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photos-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 220px;
+  }
+
+  .photo-item--tall,
+  .photo-item--wide {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+
+  .press-quote {
+    padding: var(--space-md);
+  }
+
+  .press-quote__mark {
+    font-size: 3rem;
+  }
+
+  .social-pill {
+    padding: 8px 14px;
+    font-size: var(--size-xs);
+  }
+
+  .concert-item__venue {
+    font-size: var(--size-sm);
+  }
+}
+
+/* ── Mobile (< 768px) ── */
+@media (max-width: 767px) {
+  /* Hero */
+  .hero__instruments {
+    display: none;
+  }
+
+  .hero__video {
+    opacity: 0.12;
+  }
+
+  .hero__content {
+    padding: var(--space-sm);
+  }
+
+  .hero__label {
+    font-size: var(--size-xs);
+    letter-spacing: 0.12em;
+  }
+
+  .hero__ctas {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .hero__ctas .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero__scroll-indicator {
+    display: none;
+  }
+
+  /* Bio */
+  .bio__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bio__image--hero {
+    max-height: 280px;
+  }
+
+  .bio__image--hero .bio__img {
+    height: 280px;
+  }
+
+  .bio__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+
+  .member-card {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  /* Discography */
+  .album-hero {
+    padding: var(--space-md);
+  }
+
+  .album-hero__cover {
+    max-width: 240px;
+  }
+
+  .album-hero__links {
+    justify-content: center;
+  }
+
+  .albums-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .album-card__info {
+    padding: var(--space-sm);
+  }
+
+  .album-card__title {
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.5rem);
+  }
+
+  .spotify-embed iframe {
+    height: 200px;
+  }
+
+  /* Videos */
+  .videos-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .video-thumb__play {
+    width: 56px;
+    height: 56px;
+  }
+
+  .video-thumb__play svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Concerts */
+  .concert-item {
+    gap: var(--space-sm);
+    padding: var(--space-md) 0;
+    flex-wrap: wrap;
+  }
+
+  .concert-item__date {
+    min-width: 50px;
+  }
+
+  .concert-item__day {
+    font-size: var(--size-lg);
+  }
+
+  .concert-item .btn {
+    width: 100%;
+    margin-top: var(--space-xs);
+  }
+
+  /* Press */
+  .press-quotes {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .press-articles__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .press-article {
+    min-height: 120px;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .press-article::before {
+    font-size: 2rem;
+  }
+
+  .press-kit {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  /* Photos */
+  .photos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 180px;
+  }
+
+  .photo-item--tall {
+    grid-row: span 1;
+  }
+
+  .photo-item--wide {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  /* Contact */
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__social-links {
+    justify-content: center;
+  }
+
+  /* Prevent iOS zoom on input focus */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  /* Footer */
+  .footer__inner {
+    text-align: center;
+  }
+
+  .footer__links {
+    justify-content: center;
+  }
+
+  /* Lightbox — larger touch targets */
+  .lightbox__close {
+    top: var(--space-sm);
+    right: var(--space-sm);
+    font-size: 2.5rem;
+    padding: var(--space-sm);
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .lightbox__prev,
+  .lightbox__next {
+    font-size: 2rem;
+    padding: var(--space-md) var(--space-sm);
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .lightbox__prev { left: 0; }
+  .lightbox__next { right: 0; }
+
+  .lightbox__content {
+    max-width: 95vw;
+  }
+
+  .lightbox__img {
+    max-width: 95vw;
+    max-height: 70vh;
+  }
+
+  .lightbox__placeholder {
+    width: 90vw;
+    height: 50vh;
+  }
+
+  .lightbox__counter {
+    bottom: var(--space-sm);
+  }
+}
+
+/* ── Small mobile landscape ── */
+@media (max-width: 767px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: var(--space-xl) 0;
+  }
+
+  .hero__logo {
+    width: clamp(60px, 12vw, 100px);
+    margin-bottom: var(--space-xs);
+  }
+
+  .hero__label {
+    margin-bottom: var(--space-xs);
+  }
+
+  .hero__tagline {
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero__badge {
+    display: none;
+  }
+
+  .lightbox__img {
+    max-height: 85vh;
+    max-width: 90vw;
+  }
+}
+
+/* ── Tablet (768px+) ── */
 @media (min-width: 768px) {
   .bio__grid {
     grid-template-columns: 1.2fr 0.8fr;
@@ -2053,9 +2402,13 @@ figure {
   .photos-grid {
     grid-auto-rows: 300px;
   }
+
+  .albums-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-/* Desktop (1024px+) */
+/* ── Desktop (1024px+) ── */
 @media (min-width: 1024px) {
   .nav__links {
     display: flex;
@@ -2076,105 +2429,16 @@ figure {
   .concert-item {
     gap: var(--space-xl);
   }
+
+  .albums-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
-/* Large (1400px+) */
+/* ── Large (1400px+) ── */
 @media (min-width: 1400px) {
   .container {
     max-width: 1300px;
-  }
-}
-
-/* Mobile small adjustments */
-@media (max-width: 767px) {
-  .bio__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .bio__stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .hero__ctas {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hero__ctas .btn {
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .contact__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer__inner {
-    text-align: center;
-  }
-
-  .footer__links {
-    justify-content: center;
-  }
-
-  .photos-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 200px;
-  }
-
-  .photo-item--tall {
-    grid-row: span 1;
-  }
-
-  .photo-item--wide {
-    grid-column: span 1;
-  }
-
-  .concert-item {
-    gap: var(--space-md);
-    flex-wrap: wrap;
-  }
-
-  .concert-item .btn {
-    width: 100%;
-    margin-top: var(--space-xs);
-  }
-
-  .press-quotes {
-    grid-template-columns: 1fr;
-  }
-
-  .press-articles__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .lightbox__prev,
-  .lightbox__next {
-    font-size: 2rem;
-  }
-
-  .lightbox__placeholder {
-    width: 90vw;
-    height: 50vh;
-  }
-
-  .album-hero {
-    padding: var(--space-md);
-  }
-
-  .album-hero__cover {
-    max-width: 280px;
-  }
-
-  .video-thumb__play {
-    width: 56px;
-    height: 56px;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
   }
 }
 
@@ -2201,7 +2465,6 @@ figure {
 
   .hero__logo,
   .hero__label,
-  .hero__title,
   .hero__tagline,
   .hero__ctas,
   .hero__badge {
