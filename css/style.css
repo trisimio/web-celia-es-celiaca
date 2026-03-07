@@ -436,7 +436,9 @@ figure {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-lg);
+  gap: var(--space-md);
+  padding: var(--nav-height) var(--space-md) var(--space-lg);
+  overflow-y: auto;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -451,12 +453,12 @@ figure {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 .mobile-menu__link {
   font-family: var(--font-display);
-  font-size: var(--size-2xl);
+  font-size: clamp(1.8rem, 1.5rem + 2vw, 3rem);
   color: var(--white);
   text-decoration: none;
   text-transform: uppercase;
@@ -486,7 +488,7 @@ figure {
 
 .mobile-menu__social {
   display: flex;
-  gap: var(--space-md);
+  gap: var(--space-lg);
   opacity: 0;
 }
 
@@ -496,15 +498,18 @@ figure {
 }
 
 .mobile-menu__social a {
-  font-family: var(--font-mono);
-  font-size: var(--size-sm);
   color: var(--gray-300);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  transition: color var(--transition), transform var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .mobile-menu__social a:hover {
   color: var(--coral);
+  transform: scale(1.15);
 }
 
 .mobile-menu__motto {
