@@ -205,12 +205,12 @@ figure {
   text-align: center;
 }
 
-.loader__name {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 1.5rem + 3vw, 4rem);
-  letter-spacing: 0.1em;
-  color: var(--white);
+.loader__logo {
+  width: clamp(100px, 20vw, 180px);
+  height: auto;
   margin-bottom: var(--space-md);
+  filter: drop-shadow(0 0 30px rgba(251, 164, 162, 0.4));
+  animation: logo-pulse 2s ease-in-out infinite alternate;
 }
 
 .loader__bar {
