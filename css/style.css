@@ -2569,6 +2569,91 @@ address {
   font-style: normal;
 }
 
+/* ═══════════════════════════════════════════
+   EASTER EGG GAME
+   ═══════════════════════════════════════════ */
+.footer__motto {
+  cursor: pointer;
+}
+
+.game-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(8, 8, 12, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.game-overlay[hidden] {
+  display: flex;
+}
+
+.game-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.game-overlay__inner {
+  text-align: center;
+  padding: var(--space-md);
+  max-width: 100%;
+}
+
+.game-overlay__close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-size: 2rem;
+  color: var(--white);
+  z-index: 3;
+  padding: var(--space-xs);
+}
+
+.game-overlay__close:hover {
+  color: var(--coral);
+}
+
+.game-overlay__title {
+  font-family: var(--font-display);
+  font-size: var(--size-xl);
+  letter-spacing: 0.1em;
+  background: var(--gradient-coral-purple);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: var(--space-md);
+}
+
+#gameCanvas {
+  border: 1px solid var(--surface-3);
+  border-radius: var(--radius);
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  background: var(--surface);
+}
+
+.game-overlay__hint {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--gray-300);
+  letter-spacing: 0.1em;
+  margin-top: var(--space-sm);
+}
+
+.game-overlay__score {
+  font-family: var(--font-mono);
+  font-size: var(--size-sm);
+  color: var(--coral);
+  margin-top: var(--space-xs);
+}
+
 /* Extra social pills */
 .social-pill--tiktok:hover { background: #010101; border-color: #69C9D0; }
 .social-pill--facebook:hover { background: #1877F2; border-color: #1877F2; }

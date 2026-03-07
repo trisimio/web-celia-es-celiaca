@@ -952,7 +952,7 @@
         </nav>
         <div class="footer__bottom">
           <p>&copy; 2026 Celia es Celíaca. Subterfuge Records.</p>
-          <p class="footer__motto">MUERTE AL PAN</p>
+          <p class="footer__motto" id="easterEgg" role="button" tabindex="0" title="???">MUERTE AL PAN</p>
         </div>
       </div>
     </div>
@@ -967,6 +967,18 @@
     <div class="lightbox__counter"></div>
   </div>
 
+  <!-- Easter Egg: Muerte al Pan Runner -->
+  <div id="gameOverlay" class="game-overlay" hidden>
+    <div class="game-overlay__inner">
+      <button class="game-overlay__close" id="gameClose" aria-label="Cerrar">&times;</button>
+      <h3 class="game-overlay__title">MUERTE AL PAN!</h3>
+      <canvas id="gameCanvas" width="600" height="200"></canvas>
+      <p class="game-overlay__hint" id="gameHint">Espacio o toca para saltar</p>
+      <p class="game-overlay__score">Trigos esquivados: <span id="gameScore">0</span></p>
+    </div>
+  </div>
+
   <script src="js/app.js" defer></script>
+  <script src="js/game.js" defer></script>
 </body>
 </html>
