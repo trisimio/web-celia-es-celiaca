@@ -557,6 +557,11 @@ figure {
   pointer-events: none;
 }
 
+.hero__video-wrap {
+  z-index: 1;
+}
+
+/* Fallback image — hidden when video loads, visible as safety net */
 .hero__bg-img {
   position: absolute;
   inset: 0;
@@ -564,17 +569,12 @@ figure {
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
-  opacity: 0.4;
-}
-
-/* Desktop: video on top covers the image */
-.hero__video-wrap {
-  z-index: 1;
-  opacity: 0.35;
-}
-
-.hero__bg-img {
   z-index: 0;
+}
+
+/* Dark overlay for text readability over video */
+.hero__noise {
+  z-index: 2;
 }
 
 /* Floating instrument icons */
@@ -605,6 +605,15 @@ figure {
 }
 
 .hero__noise {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(to bottom, rgba(8, 8, 12, 0.3) 0%, rgba(8, 8, 12, 0.15) 40%, rgba(8, 8, 12, 0.4) 100%);
+}
+
+.hero__noise::after {
+  content: '';
   position: absolute;
   inset: 0;
   opacity: 0.03;
@@ -2127,15 +2136,6 @@ figure {
   /* Hero */
   .hero__instruments {
     display: none;
-  }
-
-  /* Mobile: hide video (autoplay blocked), show only bg image */
-  .hero__video-wrap {
-    display: none;
-  }
-
-  .hero__bg-img {
-    opacity: 0.5;
   }
 
   .hero__content {
