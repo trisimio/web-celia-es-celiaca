@@ -1,0 +1,2 @@
+# Bloquea acceso directo a la carpeta data via HTTP. PHP sigue pudiendo leer.
+Require all denied

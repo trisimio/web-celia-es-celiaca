@@ -1,0 +1,24 @@
+# /admin — proteccion adicional sobre la auth de PHP
+Options -Indexes
+
+<IfModule mod_headers.c>
+  # No cachear paginas de admin
+  Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+  Header always set Pragma "no-cache"
+  Header always set Expires "0"
+  # No indexar admin en buscadores
+  Header always set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
+  # Reforzar CSP para el panel: sin frames de terceros
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; connect-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none'"
+  Header always set X-Frame-Options "DENY"
+</IfModule>
+
+# Solo permitimos PHP, CSS y JS dentro de admin/
+<FilesMatch "\.(json|md|log|bak|txt|sql)$">
+  Require all denied
+</FilesMatch>
+
+# Bloquea archivos internos (convencion _*.php)
+<FilesMatch "^_">
+  Require all denied
+</FilesMatch>

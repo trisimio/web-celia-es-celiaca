@@ -1,0 +1,122 @@
+# ============================================================================
+#  celiaesceliaca.com — configuracion Apache
+# ============================================================================
+
+# Index priority: PHP > HTML
+DirectoryIndex index.php index.html
+
+# Desactivar listing de directorios
+Options -Indexes
+
+# Ocultar la version de Apache/PHP en headers
+ServerSignature Off
+
+# ============================================================================
+#  HTTPS only + redirects
+# ============================================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Forzar HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # /index.html legacy -> /
+  RewriteRule ^index\.html$ / [R=301,L]
+
+  # /sitemap.xml -> sitemap.xml.php
+  RewriteRule ^sitemap\.xml$ sitemap.xml.php [L]
+
+  # Forzar www no -> apex (mantiene celiaesceliaca.com sin www)
+  RewriteCond %{HTTP_HOST} ^www\.celiaesceliaca\.com$ [NC]
+  RewriteRule ^(.*)$ https://celiaesceliaca.com/$1 [R=301,L]
+</IfModule>
+
+# ============================================================================
+#  Security headers (aplicados globalmente)
+# ============================================================================
+<IfModule mod_headers.c>
+  # HSTS: forzar HTTPS por 1 año, incluir subdominios, preload-ready
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" "expr=%{HTTPS} == 'on'"
+
+  # Anti-clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # Bloquea sniffing de MIME
+  Header always set X-Content-Type-Options "nosniff"
+  # Cross-origin policies
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+  # Limita features sensibles del navegador
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+  # CORP / COEP / COOP (no aplicamos COEP estricto por embeds externos)
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+
+  # CSP: permite assets propios + YouTube embed + Spotify embed + fonts Google + Instagram + widgets de terceros
+  Header always set Content-Security-Policy "\
+default-src 'self'; \
+script-src 'self' https://cdnjs.cloudflare.com https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://www.gstatic.com https://www.instagram.com https://platform.instagram.com 'unsafe-inline'; \
+style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; \
+img-src 'self' data: blob: https:; \
+font-src 'self' https://fonts.gstatic.com data:; \
+media-src 'self' https:; \
+connect-src 'self' https:; \
+frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://open.spotify.com https://www.instagram.com https://cdn.lightwidget.com https://lightwidget.com https://snapwidget.com https://www.snapwidget.com https://apps.elfsight.com https://embedsocial.com https://curator.io https://behold.so; \
+frame-ancestors 'self'; \
+form-action 'self'; \
+base-uri 'self'; \
+object-src 'none'; \
+upgrade-insecure-requests"
+
+  # Quita X-Powered-By y Server PHP donde se pueda
+  Header unset X-Powered-By
+  Header unset Server
+</IfModule>
+
+# ============================================================================
+#  Cache de assets estaticos
+# ============================================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                              "access plus 1 hour"
+  ExpiresByType text/html                     "access plus 0 seconds"
+  ExpiresByType image/jpeg                    "access plus 30 days"
+  ExpiresByType image/png                     "access plus 30 days"
+  ExpiresByType image/webp                    "access plus 30 days"
+  ExpiresByType image/svg+xml                 "access plus 30 days"
+  ExpiresByType image/avif                    "access plus 30 days"
+  ExpiresByType text/css                      "access plus 7 days"
+  ExpiresByType application/javascript        "access plus 7 days"
+  ExpiresByType application/x-font-woff2      "access plus 30 days"
+  ExpiresByType font/woff2                    "access plus 30 days"
+</IfModule>
+
+# ============================================================================
+#  Compresion (si gzip/deflate disponible)
+# ============================================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# ============================================================================
+#  Bloqueo de archivos sensibles
+# ============================================================================
+<FilesMatch "\.(bak|env|log|md|sh|sql|ini|yml|yaml|dist|example|lock)$">
+  Require all denied
+</FilesMatch>
+
+# Bloquear acceso directo a backups y dotfiles
+<FilesMatch "^(\.|composer\.json|composer\.lock|package\.json|package-lock\.json)">
+  Require all denied
+</FilesMatch>
+
+# Bloquear archivos internos (convencion _*.php)
+<FilesMatch "^_">
+  Require all denied
+</FilesMatch>
+
+# Permitir .well-known (Let's Encrypt, etc.)
+<IfModule mod_alias.c>
+  Alias /.well-known /home/u305349901/domains/celiaesceliaca.com/public_html/.well-known
+</IfModule>

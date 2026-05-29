@@ -1,3 +1,16 @@
 .DS_Store
 node_modules/
 .claude/
+deploy.sh
+
+# Backups locales
+index.html.bak
+*.bak
+
+# Datos sensibles del CMS — NUNCA subir
+data/secrets.php
+data/auth.php
+data/login-attempts.json
+data/admin-activity.log
+data/contact-rate.json
+data/backups/

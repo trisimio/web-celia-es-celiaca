@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /data/
+Disallow: /contact.php
 
 Sitemap: https://celiaesceliaca.com/sitemap.xml

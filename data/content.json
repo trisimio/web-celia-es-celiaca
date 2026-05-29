@@ -1,0 +1,530 @@
+{
+  "hero": {
+    "label": "Pop-Rock Alternativo / Punk — Madrid",
+    "tagline": "No te llenaré estadios\npero un escenario sí.",
+    "videoId": "jxkv3uXwY_I",
+    "badge": "MUERTE AL PAN!"
+  },
+  "bio": {
+    "image": "img/cec-promo2.jpg",
+    "paragraphs": [
+      "<strong>Celia es Celíaca</strong> nace en 2012 en <strong>Madrid</strong> de la mano de <strong>Celia</strong>, jefa y quien se inventa las letras, y <strong>Borja</strong>, ese guitarrista que jamás conseguirá que Celia afine su guitarra, pero que aun así la ha aguantado toda la vida.",
+      "En 2016 publican <em>Kosmos</em>, un primer LP autoproducido que incluye su tema más exitoso hasta la fecha: <em>Septiembre</em>, canción que apareció en <strong>La Que Se Avecina</strong>. Dos años más tarde llegaría <em>Despechos de Autor</em>, un segundo álbum cargado con una docena de canciones nuevas y producido por <strong>Jesús Antúnez</strong>.",
+      "Tras él, continúan su aventura con <em>Melodías</em>, EP lanzado en 2023 y producido por <strong>Carlos Hernández Nombela</strong> y, de nuevo, <strong>Jesús Antúnez</strong>, quien ese mismo año se suma a la sección rítmica junto a <strong>Álvaro Gómez</strong> (sí, ambos batería y bajo respectivamente de <strong>Dover</strong>).",
+      "Con el cambio de formación, el ya cuarteto consolidado aumenta la intensidad, suma experiencia y ficha por <strong>Subterfuge Records</strong>. Además, han sido ganadores y finalistas en varios concursos de bandas emergentes como <strong>Coca-Cola Concerts Club</strong>, <strong>Miaque Fest</strong>, <strong>EDP rock&amp;roll</strong> o <strong>Indiecool</strong>, y <strong>Celia</strong> ha participado en el talent show de Netflix <strong>¡A Cantar!</strong>.",
+      "Tras un 2025 publicando adelantos y llenando salas de Madrid con enérgicos conciertos, el <strong>6 de febrero de 2026</strong> publican su tercer disco de estudio, <em>Pretendientes Contundentes</em>. Un álbum que llega después de un año de ebullición creativa y que condensa sus influencias rock y pop guitarrero, sin perder nunca su personalidad gamberra, directa y absolutamente emocional.",
+      "A finales de 2025 se incorpora <strong>Miguel L. Garrido</strong> como guitarrista."
+    ],
+    "stats": []
+  },
+  "members": [
+    {
+      "name": "Celia",
+      "role": "Voz & Letras"
+    },
+    {
+      "name": "Jesús Antúnez",
+      "role": "Batería & Producción"
+    },
+    {
+      "name": "Álvaro Gómez",
+      "role": "Bajo"
+    },
+    {
+      "name": "Borja",
+      "role": "Guitarra"
+    },
+    {
+      "name": "Miguel L. Garrido",
+      "role": "Guitarra"
+    }
+  ],
+  "discography": {
+    "featured": {
+      "year": "2026",
+      "title": "Pretendientes Contundentes",
+      "label": "Subterfuge Records",
+      "image": "img/pretendientes-contundentes.jpg",
+      "description": "El tercer álbum de estudio. Un viaje que va de la melancolía de la soledad a los brindis más multitudinarios, mezclando ironía, honestidad y emoción sin bajar revoluciones. Como su nombre indica, un disco directo, potente y lleno de vida. Producido por Jesús Antúnez en Estudio 73, con trompetas de Ramón Rodríguez Luque.",
+      "tracklist": [
+        "Con flores",
+        "Las siete menos diez",
+        "Sugestión",
+        "Qué más da",
+        "¿Cómo quieres que te soporte?",
+        "La solución al problema",
+        "No me dejas dormir",
+        "Contra todo propósito",
+        "Monstruos",
+        "Mucha gente",
+        "Es eso",
+        "La música"
+      ],
+      "spotifyId": "6AgOEWe1pN2qFFBN9IA7Rz",
+      "spotifyUrl": "https://open.spotify.com/artist/2Sq78UsNGrY3Myqs1Tbu0d",
+      "appleUrl": "https://music.apple.com/us/artist/celia-es-cel%C3%ADaca/1128918022",
+      "bandcampUrl": "https://celiaesceliaca.bandcamp.com"
+    },
+    "past": [
+      {
+        "year": "2023",
+        "title": "Melodías EP",
+        "image": "img/melodias-ep.jpg",
+        "tracklist": [
+          "Melodías",
+          "Nadie Se Acuerda De Ti",
+          "Regresión Millennial",
+          "Chotis y Gatos",
+          "Brujas"
+        ]
+      },
+      {
+        "year": "2019",
+        "title": "Despechos de Autor",
+        "image": "img/despechos-de-autor.jpg",
+        "tracklist": [
+          "Mamoneo",
+          "Reinas",
+          "I+D+i (ota)",
+          "Hoy No",
+          "Los Lunes Al Sol",
+          "Portugal",
+          "Vete a la Mierda",
+          "Caribe",
+          "Todos Caemos Igual",
+          "Por Amor al Arte",
+          "Tu Vieja",
+          "Tonto el Último que se Ría"
+        ]
+      },
+      {
+        "year": "2016",
+        "title": "Kosmos",
+        "image": "img/kosmos.jpg",
+        "tracklist": [
+          "Septiembre",
+          "Crisis de los 25",
+          "Vamos a Contar Mentiras",
+          "Tonto el Último que se Ría",
+          "I+D+i (ota)",
+          "Caravana del Amor",
+          "Kosmos"
+        ]
+      },
+      {
+        "year": "2025",
+        "title": "El blanco te sienta fatal",
+        "image": "img/el-blanco-te-sienta-fatal.jpg",
+        "type": "Single"
+      }
+    ]
+  },
+  "videos": {
+    "featured": {
+      "id": "jxkv3uXwY_I",
+      "title": "Sugestión",
+      "thumb": "img/yt-sugestion.jpg"
+    },
+    "grid": [
+      {
+        "id": "VPKst54SxVQ",
+        "title": "Mucha Gente",
+        "thumb": "img/yt-mucha-gente.jpg"
+      },
+      {
+        "id": "28U7edg9ON8",
+        "title": "La Solución al Problema (Lyric Video)",
+        "thumb": "img/yt-solucion.jpg"
+      },
+      {
+        "id": "ZkUILBlfBZk",
+        "title": "No me dejas dormir",
+        "thumb": "img/yt-no-me-dejas.jpg"
+      },
+      {
+        "id": "vJQQ7C0kDjg",
+        "title": "Septiembre (Vídeo Oficial)",
+        "thumb": "img/yt-septiembre.jpg"
+      },
+      {
+        "id": "gQTanZxnVSw",
+        "title": "Regresión Millennial",
+        "thumb": "img/yt-regresion.jpg"
+      },
+      {
+        "id": "mwV5TG5TK5M",
+        "title": "Brujas (Videoclip)",
+        "thumb": "img/yt-brujas.jpg"
+      }
+    ]
+  },
+  "concerts": {
+    "upcoming": [
+      {
+        "date": "2026-06-12",
+        "day": "12",
+        "month": "JUN",
+        "venue": "Sala El Sótano",
+        "city": "C/ Maldonadas 6, Madrid — Presentación \"Pretendientes Contundentes\" · 21:00",
+        "ticketsUrl": "https://www.ticketeame.com/es/events/celia-es-celiaca-presenta-pretendientes-contundentes-stereolikes",
+        "status": "Entradas"
+      }
+    ],
+    "past": [
+      {
+        "date": "2026-05-06",
+        "day": "06",
+        "month": "MAY",
+        "venue": "Los Conciertos de Radio 3 (RTVE)",
+        "city": "Sesión en directo · Programa #1461",
+        "url": "https://www.rtve.es/play/audios/los-conciertos-de-radio-3/",
+        "status": "Emitido"
+      },
+      {
+        "date": "2026-02-27",
+        "day": "27",
+        "month": "FEB",
+        "venue": "Sala Pícaro",
+        "city": "Toledo — con Zona Zero",
+        "status": "Finalizado"
+      },
+      {
+        "date": "2026-02-06",
+        "day": "06",
+        "month": "FEB",
+        "venue": "Lanzamiento \"Pretendientes Contundentes\"",
+        "city": "Subterfuge Records",
+        "status": "Publicado"
+      },
+      {
+        "date": "2025-11-13",
+        "day": "13",
+        "month": "NOV",
+        "venue": "Sala Siroco",
+        "city": "Madrid — con Venga, Bea",
+        "status": "Agotado"
+      }
+    ]
+  },
+  "press": {
+    "quotes": [
+      {
+        "text": "Se ha consolidado como uno de los grupos más singulares del pop-rock madrileño, capaz de combinar humor y rock con mensajes intensos y cercanos.",
+        "source": "Premios MIN 2026",
+        "url": "https://premiosmin.com/candidate/celia-es-celiaca"
+      },
+      {
+        "text": "Capaz de pasar con facilidad pasmosa de la dureza a la dulzura. Doce temas difíciles de encasillar. Larga vida a la música sin gluten de Celia es Celíaca.",
+        "source": "El Giradiscos",
+        "url": "https://www.elgiradiscos.com/2019/03/celia-es-celiaca-despechos-de-autor.html"
+      },
+      {
+        "text": "Hacemos música sin gluten, apta para todos los oídos.",
+        "source": "Celia Ortega, Con 2 Bemoles Radio",
+        "url": "https://con2bemolesradio.com/celia-es-celiaca/"
+      }
+    ],
+    "articles": [
+      {
+        "date": "2026-05-06",
+        "dateLabel": "6 mayo 2026",
+        "source": "Radio 3 (RTVE)",
+        "logo": "RADIO3",
+        "title": "Los Conciertos de Radio 3 #1461 — Celia es Celíaca en directo",
+        "url": "https://www.rtve.es/play/audios/los-conciertos-de-radio-3/"
+      },
+      {
+        "date": "2026-02-06",
+        "dateLabel": "6 febrero 2026",
+        "source": "Subterfuge Records",
+        "logo": "SUBTERFUGE",
+        "title": "Celia es Celíaca publican \"Pretendientes Contundentes\", su tercer álbum",
+        "url": "https://www.subterfuge.com/noticias/celia-es-celiaca-publican-pretendientes-contundentes-su-tercer-album/"
+      },
+      {
+        "date": "2026-02-27",
+        "dateLabel": "febrero 2026",
+        "source": "Revista Indie",
+        "logo": "INDIE",
+        "title": "Crónica: Celia es Celíaca + Zona Zero en Sala Pícaro (Toledo)",
+        "url": "https://revistaindie.com/celia-es-celiaca-zona-zero/"
+      },
+      {
+        "date": "2026",
+        "dateLabel": "2026",
+        "source": "LinkMusic",
+        "logo": "LINKMUSIC",
+        "title": "Entrevista: el universo punk, ácido y honesto de Celia es Celíaca",
+        "url": "https://blog.lnkmsc.com/entrevista-celia-es-celiaca/"
+      },
+      {
+        "date": "2026",
+        "dateLabel": "2026",
+        "source": "Premios MIN",
+        "logo": "MIN",
+        "title": "4 nominaciones: Canción del Año, Artista Emergente, Mejor Videoclip, Mejor Producción",
+        "url": "https://premiosmin.com/candidate/celia-es-celiaca"
+      },
+      {
+        "date": "2026-01-16",
+        "dateLabel": "16 enero 2026",
+        "source": "Subterfuge Records",
+        "logo": "SUBTERFUGE",
+        "title": "Desvelan título y fecha de su tercer álbum con \"¿Cómo quieres que te soporte?\"",
+        "url": "https://www.subterfuge.com/noticias/celia-es-celiaca-desvelan-titulo-y-fecha-de-su-tercer-album-con-como-quieres-que-te-soporte/"
+      },
+      {
+        "date": "2026-01",
+        "dateLabel": "enero 2026",
+        "source": "FOTKAI",
+        "logo": "FOTKAI",
+        "title": "Entrevista: punk, crítica social y el nuevo single \"¿Cómo quieres que te soporte?\"",
+        "url": "https://fotkai.es/en/celia-es-celiaca-entrevista-2026"
+      },
+      {
+        "date": "2025-11-30",
+        "dateLabel": "30 noviembre 2025",
+        "source": "Culturamas",
+        "logo": "CULTURAMAS",
+        "title": "Celia es Celíaca: la ternura del diablo (crónica del directo)",
+        "url": "https://www.culturamas.es/2025/11/30/celia-es-celiaca-la-ternura-del-diablo/"
+      },
+      {
+        "date": "2025-11-21",
+        "dateLabel": "21 noviembre 2025",
+        "source": "Subterfuge Records",
+        "logo": "SUBTERFUGE",
+        "title": "\"Las Siete Menos Diez\", un viaje a través de las etapas de la vida",
+        "url": "https://www.subterfuge.com/noticias/celia-es-celiaca-publican-las-siete-menos-diez-un-viaje-a-traves-de-las-etapas-de-la-vida/"
+      },
+      {
+        "date": "2025-11-13",
+        "dateLabel": "13 noviembre 2025",
+        "source": "Culturamas",
+        "logo": "CULTURAMAS",
+        "title": "El rock divertido y contundente de Celia es Celíaca",
+        "url": "https://www.culturamas.es/2025/11/13/el-rock-divertido-y-contundente-de-celia-es-celiaca/"
+      },
+      {
+        "date": "2025-10-24",
+        "dateLabel": "24 octubre 2025",
+        "source": "Subterfuge Records",
+        "logo": "SUBTERFUGE",
+        "title": "\"Mucha Gente\": qué queda de nosotros cuando la ciudad nos devora",
+        "url": "https://www.subterfuge.com/noticias/celia-es-celiaca-se-preguntan-que-queda-de-nosotros-cuando-la-ciudad-nos-devora-en-mucha-gente/"
+      },
+      {
+        "date": "2025-09-05",
+        "dateLabel": "5 septiembre 2025",
+        "source": "Subterfuge Records",
+        "logo": "SUBTERFUGE",
+        "title": "Celia es Celíaca publican \"No me dejas dormir\"",
+        "url": "https://www.subterfuge.com/noticias/celia-es-celiaca-publican-no-me-dejas-dormir/"
+      },
+      {
+        "date": "2025-05",
+        "dateLabel": "mayo 2025",
+        "source": "Subterfuge Records",
+        "logo": "SUBTERFUGE",
+        "title": "\"Sugestión\", el 2.º adelanto de su próximo álbum",
+        "url": "https://www.subterfuge.com/noticias/celia-es-celiaca-publican-sugestion-el-2o-adelanto-de-su-proximo-album/"
+      },
+      {
+        "date": "2025-02-20",
+        "dateLabel": "20 febrero 2025",
+        "source": "Subterfuge Records",
+        "logo": "SUBTERFUGE",
+        "title": "El flamante nuevo fichaje de Subterfuge trae \"La Solución al Problema\"",
+        "url": "https://www.subterfuge.com/noticias/celia-es-celiaca-el-flamante-nuevo-fichaje-de-subterfuge-trae-la-solucion-al-problema/"
+      },
+      {
+        "date": "2021-12-01",
+        "dateLabel": "1 diciembre 2021",
+        "source": "RockTotal",
+        "logo": "ROCKTOTAL",
+        "title": "Celia es Celíaca presenta \"Regresión Millennial\"",
+        "url": "https://www.rocktotal.com/celia-es-celiaca-presenta-regresion-millennial/"
+      },
+      {
+        "date": "2019-07-18",
+        "dateLabel": "18 julio 2019",
+        "source": "Con 2 Bemoles Radio",
+        "logo": "CON2BEMOLES",
+        "title": "Entrevista en podcast: \"Hacemos música sin gluten\"",
+        "url": "https://con2bemolesradio.com/celia-es-celiaca/"
+      },
+      {
+        "date": "2019-03",
+        "dateLabel": "marzo 2019",
+        "source": "El Giradiscos",
+        "logo": "GIRADISCOS",
+        "title": "Reseña: \"Despechos de Autor\"",
+        "url": "https://www.elgiradiscos.com/2019/03/celia-es-celiaca-despechos-de-autor.html"
+      },
+      {
+        "date": "publico",
+        "dateLabel": "Público.es",
+        "source": "Público",
+        "logo": "PUBLICO",
+        "title": "\"¿Objetivo realizable? Sacar un doble disco con Mocedades\"",
+        "url": "https://www.publico.es/culturas/celia-celiaca-celia.html"
+      },
+      {
+        "date": "2017",
+        "dateLabel": "2017",
+        "source": "Muzikalia",
+        "logo": "MUZIKALIA",
+        "title": "Celia es Celíaca en Muzikalia",
+        "url": "https://muzikalia.com/celia-es-celiaca/"
+      }
+    ]
+  },
+  "photos": [
+    {
+      "src": "img/radio3-01.jpg",
+      "alt": "Celia es Celíaca en Los Conciertos de Radio 3 — foto 01",
+      "caption": "Los Conciertos de Radio 3 — 01",
+      "size": "wide"
+    },
+    {
+      "src": "img/radio3-11.jpg",
+      "alt": "Celia es Celíaca en Los Conciertos de Radio 3 — foto 11",
+      "caption": "Los Conciertos de Radio 3 — 11",
+      "size": "normal"
+    },
+    {
+      "src": "img/radio3-23.jpg",
+      "alt": "Celia es Celíaca en Los Conciertos de Radio 3 — foto 23",
+      "caption": "Los Conciertos de Radio 3 — 23",
+      "size": "tall"
+    },
+    {
+      "src": "img/radio3-33.jpg",
+      "alt": "Celia es Celíaca en Los Conciertos de Radio 3 — foto 33",
+      "caption": "Los Conciertos de Radio 3 — 33",
+      "size": "normal"
+    },
+    {
+      "src": "img/radio3-42.jpg",
+      "alt": "Celia es Celíaca en Los Conciertos de Radio 3 — foto 42",
+      "caption": "Los Conciertos de Radio 3 — 42",
+      "size": "normal"
+    },
+    {
+      "src": "img/radio3-52.jpg",
+      "alt": "Celia es Celíaca en Los Conciertos de Radio 3 — foto 52",
+      "caption": "Los Conciertos de Radio 3 — 52",
+      "size": "wide"
+    },
+    {
+      "src": "img/radio3-64.jpg",
+      "alt": "Celia es Celíaca en Los Conciertos de Radio 3 — foto 64",
+      "caption": "Los Conciertos de Radio 3 — 64",
+      "size": "normal"
+    },
+    {
+      "src": "img/radio3-74.jpg",
+      "alt": "Celia es Celíaca en Los Conciertos de Radio 3 — foto 74",
+      "caption": "Los Conciertos de Radio 3 — 74",
+      "size": "tall"
+    },
+    {
+      "src": "img/hero-bg.jpg",
+      "alt": "Celia es Celíaca - la banda al completo",
+      "caption": "La banda al completo",
+      "size": "wide"
+    },
+    {
+      "src": "img/celia-retrato.jpg",
+      "alt": "Celia - retrato",
+      "caption": "Celia, retrato",
+      "size": "tall"
+    },
+    {
+      "src": "img/sugestion-promo.jpg",
+      "alt": "Celia es Celíaca - promo Sugestión",
+      "caption": "Promo Sugestión",
+      "size": "normal"
+    },
+    {
+      "src": "img/cec-promo2.jpg",
+      "alt": "Celia es Celíaca - promo Pretendientes Contundentes",
+      "caption": "Promo Pretendientes Contundentes",
+      "size": "normal"
+    },
+    {
+      "src": "img/live-siroco-1.jpg",
+      "alt": "Celia es Celíaca en directo - Sala Siroco",
+      "caption": "En directo, Sala Siroco",
+      "size": "wide"
+    },
+    {
+      "src": "img/no-me-dejas-dormir.png",
+      "alt": "Celia es Celíaca - promo No me dejas dormir",
+      "caption": "Promo No me dejas dormir",
+      "size": "normal"
+    },
+    {
+      "src": "img/promo-album.jpg",
+      "alt": "Celia es Celíaca - promo álbum",
+      "caption": "Promo álbum",
+      "size": "tall"
+    },
+    {
+      "src": "img/mucha-gente.png",
+      "alt": "Celia es Celíaca - promo Mucha Gente",
+      "caption": "Promo Mucha Gente",
+      "size": "normal"
+    },
+    {
+      "src": "img/live-siroco-2.jpg",
+      "alt": "Celia es Celíaca en directo - Sala Siroco nov. 2025",
+      "caption": "Directo Sala Siroco, noviembre 2025",
+      "size": "wide"
+    },
+    {
+      "src": "img/live-siroco-3.jpg",
+      "alt": "Celia es Celíaca - directo Sala Siroco",
+      "caption": "Directo Sala Siroco",
+      "size": "normal"
+    },
+    {
+      "src": "img/live-siroco-4.jpg",
+      "alt": "Celia es Celíaca - directo Sala Siroco 2",
+      "caption": "Directo Sala Siroco 2",
+      "size": "normal"
+    },
+    {
+      "src": "img/live-siroco-5.jpg",
+      "alt": "Celia es Celíaca - directo Sala Siroco 3",
+      "caption": "Directo Sala Siroco 3",
+      "size": "normal"
+    }
+  ],
+  "contact": {
+    "general": "celiaesceliaca@gmail.com",
+    "pressName": "Gemma del Valle (Subterfuge)",
+    "pressEmail": "gemma@subterfuge.com",
+    "labelUrl": "https://www.subterfuge.com/artistas/celia-es-celiaca/",
+    "social": {
+      "spotify": "https://open.spotify.com/artist/2Sq78UsNGrY3Myqs1Tbu0d",
+      "instagram": "https://www.instagram.com/celiaesceliaca",
+      "youtube": "https://www.youtube.com/channel/UCw60jpCcry5FCtTD14shYbg",
+      "twitter": "https://x.com/celiaesceliaca",
+      "bandcamp": "https://celiaesceliaca.bandcamp.com",
+      "tiktok": "https://www.tiktok.com/@celiaesceliaca",
+      "facebook": "https://www.facebook.com/CeliaEsCelíaca"
+    }
+  },
+  "form": {
+    "recipientTo": "celiaesceliaca@gmail.com",
+    "recipientBcc": "miguel@trisimio.es"
+  },
+  "instagram": {
+    "title": "Lo último en Instagram",
+    "subtitle": "Síguenos en @celiaesceliaca",
+    "handle": "celiaesceliaca",
+    "posts": [],
+    "widgetHtml": ""
+  }
+}

@@ -1470,6 +1470,34 @@ figure {
   opacity: 0.5;
 }
 
+.concert-item--past .concert-item__venue,
+.concert-item--past .concert-item__city {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+}
+
+.concert-item--next {
+  border-left: 3px solid var(--coral);
+  padding-left: var(--space-md);
+  background: linear-gradient(90deg, rgba(251, 164, 162, 0.06), transparent 60%);
+  border-radius: 8px;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.concert-item--next:hover {
+  background: linear-gradient(90deg, rgba(251, 164, 162, 0.12), transparent 60%);
+  transform: translateX(2px);
+}
+
+.concert-item--next .concert-item__sold {
+  background: var(--coral);
+  color: var(--black);
+  padding: 0.4em 0.9em;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
 .concert-item__date {
   flex-shrink: 0;
   text-align: center;
@@ -2658,3 +2686,67 @@ address {
 .social-pill--tiktok:hover { background: #010101; border-color: #69C9D0; }
 .social-pill--facebook:hover { background: #1877F2; border-color: #1877F2; }
 
+
+/* ═══════════════════════════════════════════
+   INSTAGRAM
+   ═══════════════════════════════════════════ */
+.section.instagram { background: linear-gradient(180deg, transparent, rgba(217, 70, 200, 0.04)); }
+.section__subtitle {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--gray-300);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+.instagram-widget {
+  margin-top: var(--space-lg);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 8px 24px rgba(0,0,0,.3);
+}
+.instagram-widget iframe {
+  width: 100%;
+  border: 0;
+  display: block;
+  min-height: 500px;
+}
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+.instagram-grid .instagram-media {
+  min-height: 540px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+}
+.instagram-placeholder {
+  text-align: center;
+  padding: var(--space-xl) var(--space-lg);
+  margin-top: var(--space-lg);
+  background: linear-gradient(135deg, rgba(217, 70, 200, 0.06), rgba(138, 89, 248, 0.04));
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  color: var(--gray-300);
+}
+.instagram-placeholder__icon {
+  color: var(--magenta);
+  opacity: 0.85;
+  margin-bottom: var(--space-md);
+}
+.instagram-placeholder p {
+  font-family: var(--font-mono);
+  font-size: var(--size-sm);
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+.instagram-cta {
+  margin-top: var(--space-xl);
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .instagram-grid { grid-template-columns: 1fr; }
+}

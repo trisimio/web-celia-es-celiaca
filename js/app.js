@@ -416,22 +416,72 @@
 
       var formData = new FormData(form);
 
-      fetch('/', {
+      var submitBtn = form.querySelector('button[type=submit]');
+      var originalLabel = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando…'; }
+
+      fetch('contact.php', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
         body: new URLSearchParams(formData).toString()
       })
-        .then(function (response) {
-          if (response.ok) {
+        .then(function (response) { return response.json().catch(function(){ return { ok: response.ok }; }).then(function(j){ return { status: response.status, body: j }; }); })
+        .then(function (r) {
+          if (r.status >= 200 && r.status < 300 && r.body && r.body.ok) {
             form.hidden = true;
             success.hidden = false;
           } else {
-            alert('Error al enviar el formulario. Intentalo de nuevo.');
+            var msg = (r.body && (r.body.error || (r.body.errors && r.body.errors.join('. ')))) || 'Error al enviar el formulario. Inténtalo de nuevo o escribe a celiaesceliaca@gmail.com.';
+            alert(msg);
           }
         })
         .catch(function () {
-          alert('Error de conexion. Intentalo de nuevo.');
+          alert('Error de conexión. Inténtalo de nuevo o escribe a celiaesceliaca@gmail.com.');
+        })
+        .finally(function () {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
         });
+    });
+  }
+
+  // ─── Hero video robustness ───
+  // Si el iframe de YouTube no carga (CSP, bloqueo, fallo de red), recargamos una vez tras 4s.
+  // Tambien forzamos un reload al recuperar foco si el documento estuvo oculto un rato (ahorro de bateria iOS).
+  function initHeroVideo() {
+    var iframe = document.getElementById('heroVideo');
+    if (!iframe) return;
+    var vid = iframe.getAttribute('data-video-id');
+    if (!vid) return;
+
+    function buildSrc(extra) {
+      var params = 'autoplay=1&mute=1&loop=1&playlist=' + vid + '&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&enablejsapi=1';
+      if (extra) params += '&_=' + Date.now();
+      return 'https://www.youtube-nocookie.com/embed/' + vid + '?' + params;
+    }
+
+    var loaded = false;
+    iframe.addEventListener('load', function () { loaded = true; }, { once: true });
+
+    // Fallback de carga (si la primera no carga en 4s, fuerza reload una vez)
+    setTimeout(function () {
+      if (!loaded) {
+        try { iframe.src = buildSrc(true); } catch (e) {}
+      }
+    }, 4000);
+
+    // Cuando la pestaña vuelve a primer plano tras >30s oculta, recargamos para reanudar autoplay
+    var hiddenSince = 0;
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') {
+        hiddenSince = Date.now();
+      } else if (hiddenSince && (Date.now() - hiddenSince) > 30000) {
+        hiddenSince = 0;
+        try { iframe.src = buildSrc(true); } catch (e) {}
+      }
     });
   }
 
@@ -445,6 +495,7 @@
     initTracklistToggle();
     initLightbox();
     initContactForm();
+    initHeroVideo();
 
     // Wait for GSAP to load (deferred)
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {

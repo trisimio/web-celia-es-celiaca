@@ -8,8 +8,8 @@
 
 | Campo | Valor |
 |-------|-------|
-| URL | celiaesceliaca.com (pendiente) |
-| Deploy | Netlify |
+| URL | https://celiaesceliaca.com |
+| Deploy | Hostinger Business via SSH+rsync — `./deploy.sh` |
 | Stack | HTML estatico + CSS + JS vanilla + GSAP CDN |
 | Servidor local | `npx serve .` o `python3 -m http.server 8000` |
 
@@ -58,4 +58,12 @@ web-celia-es-celiaca/
 
 ## Deploy
 
-Netlify con `netlify.toml`. Push a main = deploy automatico.
+```bash
+./deploy.sh    # sync delta a Hostinger via rsync over SSH
+```
+
+- Host: `u305349901@92.113.28.238:65002`
+- Path remoto: `domains/celiaesceliaca.com/public_html/`
+- Auth: SSH key `~/.ssh/id_ed25519` (registrada en hPanel > Avanzado > SSH Access)
+- Solo sube archivos modificados; `--delete` elimina en remoto lo que no este en local.
+- `netlify.toml` se conserva por si se reactiva el deploy alternativo, pero NO se sube.
