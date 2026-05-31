@@ -2760,3 +2760,23 @@ address {
 .social-pill .platform-icon { width: 17px; height: 17px; }
 /* En el botón de Spotify (verde) el icono mantiene buen contraste */
 .btn--platform.btn--spotify .platform-icon { opacity: 1; }
+
+/* ─── Colores de marca de cada plataforma ─── */
+.platform-icon--spotify      { color: #1DB954; }
+.platform-icon--apple        { color: #FA243C; }
+.platform-icon--youtube      { color: #FF0000; }
+.platform-icon--youtubemusic { color: #FF0000; }
+.platform-icon--amazon       { color: #25D1DA; }
+.platform-icon--deezer       { color: #A238FF; }
+.platform-icon--bandcamp     { color: #629AA9; }
+.platform-icon--soundcloud   { color: #FF5500; }
+.platform-icon--instagram    { color: #E1306C; }
+.platform-icon--twitter      { color: #FFFFFF; }
+.platform-icon--tiktok       { color: #FFFFFF; }
+.platform-icon--facebook     { color: #1877F2; }
+
+/* En el botón de Spotify (fondo verde) el icono va en color del texto, no verde */
+.btn--spotify .platform-icon--spotify { color: inherit; }
+
+/* Al hacer hover sobre una pill, el icono mantiene su color de marca */
+.social-pill:hover .platform-icon { color: inherit; }
