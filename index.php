@@ -71,6 +71,7 @@ function rawhtml($s) { return (string)$s; } // contenido HTML confiado (editor d
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="apple-mobile-web-app-title" content="Celia es Celíaca">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -357,7 +358,7 @@ if (!empty($upcoming)):
 <?php if (!empty($featured['spotifyId'])): ?>
       <!-- Spotify embed -->
       <div class="spotify-embed reveal">
-        <iframe title="Reproductor de Spotify — <?= h($featured['title'] ?? 'álbum') ?>" style="border-radius:12px" src="https://open.spotify.com/embed/album/<?= h($featured['spotifyId']) ?>?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe title="Reproductor de Spotify — <?= h($featured['title'] ?? 'álbum') ?>" style="border-radius:12px" src="https://open.spotify.com/embed/album/<?= h($featured['spotifyId']) ?>?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
 <?php endif; ?>
 

@@ -583,9 +583,10 @@ figure {
   transition: opacity 1.2s ease;
 }
 
-/* Cuando el vídeo está listo, atenuamos un poco la imagen para que predomine el vídeo */
+/* Cuando el vídeo está listo, ocultamos por completo la imagen para que NO se
+   mezclen (antes quedaban superpuestas). Sólo se ve el vídeo. */
 .hero__video-wrap.is-ready + .hero__bg-img {
-  opacity: 0.12;
+  opacity: 0;
 }
 
 /* Floating instrument icons */
@@ -851,10 +852,6 @@ figure {
 .section {
   padding: var(--space-section) 0;
   position: relative;
-  /* El navegador difiere el render de secciones fuera de pantalla (mejora FCP/LCP).
-     contain-intrinsic-size reserva altura aproximada para evitar saltos de scroll. */
-  content-visibility: auto;
-  contain-intrinsic-size: auto 800px;
 }
 
 .section:nth-child(even) {
