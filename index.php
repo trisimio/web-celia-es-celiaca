@@ -1,24 +1,4 @@
 <?php
-// ── Page cache: sirve HTML pre-renderizado para reducir el TTFB (~820ms → ~30ms).
-//    Se invalida solo cuando cambian content.json, index.php, css o js.
-//    Sólo aplica a peticiones GET normales (no admin, no query params especiales).
-$__cacheable = ($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET'
-    && empty($_SERVER['QUERY_STRING']);
-$__cacheDir = __DIR__ . '/data/cache';
-if ($__cacheable) {
-    $__sig = @filemtime(__DIR__ . '/data/content.json') . '-'
-           . @filemtime(__FILE__) . '-'
-           . @filemtime(__DIR__ . '/css/style.css') . '-'
-           . @filemtime(__DIR__ . '/js/app.js');
-    $__cacheFile = $__cacheDir . '/page-' . md5($__sig) . '.html';
-    if (is_file($__cacheFile)) {
-        header('X-Cache: HIT');
-        readfile($__cacheFile);
-        exit;
-    }
-    ob_start(); // capturamos el render para guardarlo al final
-}
-
 // Render principal data-driven. Lee data/content.json y expone $C a las plantillas.
 $contentPath = __DIR__ . '/data/content.json';
 $C = json_decode(@file_get_contents($contentPath), true);
@@ -270,10 +250,11 @@ if (!empty($upcoming)):
   <!-- ═══════════════════════════════════════════ -->
   <section class="hero" id="hero">
     <div class="hero__bg">
+      <div class="hero__video-wrap">
 <?php $vid = h($C['hero']['videoId'] ?? 'jxkv3uXwY_I'); ?>
-      <!-- El iframe de YouTube se inyecta vía JS tras la carga (mejora LCP). La imagen es el fondo inmediato. -->
-      <div class="hero__video-wrap" id="heroVideoWrap" data-video-id="<?= $vid ?>"></div>
-      <img src="img/hero-bg.jpg" alt="Celia es Celíaca en directo" class="hero__bg-img" fetchpriority="high" decoding="async" width="1280" height="500">
+        <iframe class="hero__video" id="heroVideo" data-video-id="<?= $vid ?>" src="https://www.youtube-nocookie.com/embed/<?= $vid ?>?autoplay=1&mute=1&loop=1&playlist=<?= $vid ?>&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&enablejsapi=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Hero video - Celia es Celíaca" loading="eager"></iframe>
+      </div>
+      <img src="img/hero-bg.jpg" alt="" class="hero__bg-img" loading="eager" width="1280" height="500">
       <div class="hero__noise"></div>
       <!-- Animated floating instruments -->
       <div class="hero__instruments" aria-hidden="true">
@@ -287,7 +268,7 @@ if (!empty($upcoming)):
     </div>
     <div class="hero__content">
       <h1 class="sr-only">Celia es Celíaca</h1>
-      <img src="img/logo-hd@2x.png" alt="Celia es Celíaca" class="hero__logo" width="260" height="260" fetchpriority="high" decoding="async">
+      <img src="img/logo-hd.png" alt="Celia es Celíaca" class="hero__logo" width="180" height="180">
       <p class="hero__label"><?= h($C['hero']['label']) ?></p>
       <p class="hero__tagline"><?= nl2html($C['hero']['tagline']) ?></p>
       <div class="hero__ctas">
@@ -811,16 +792,3 @@ if ($ig): ?>
   <script src="js/game.js?v=<?= @filemtime(__DIR__ . '/js/game.js') ?: '1' ?>" defer></script>
 </body>
 </html>
-<?php
-// ── Guardar el render en cache (si procede) ──
-if (!empty($__cacheable) && isset($__cacheFile)) {
-    $__html = ob_get_clean();
-    echo $__html;
-    if (!is_dir($__cacheDir)) @mkdir($__cacheDir, 0775, true);
-    // Limpiar caches antiguos (de versiones previas de content/css/js)
-    foreach (glob($__cacheDir . '/page-*.html') ?: [] as $__old) {
-        if ($__old !== $__cacheFile) @unlink($__old);
-    }
-    @file_put_contents($__cacheFile, $__html, LOCK_EX);
-}
-?>

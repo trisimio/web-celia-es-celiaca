@@ -562,12 +562,6 @@ figure {
   transform: translate(-50%, -50%);
   border: none;
   pointer-events: none;
-  opacity: 0;                 /* invisible hasta que cargue (carga diferida) */
-  transition: opacity 1.2s ease;
-}
-
-/* El vídeo aparece con fundido cuando termina de cargar */
-.hero__video-wrap.is-ready .hero__video {
   opacity: 0.2;
 }
 
@@ -578,15 +572,14 @@ figure {
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
-  opacity: 0.25;              /* fondo visible de inmediato — es el LCP */
+  opacity: 0.25;
   z-index: 0;
-  transition: opacity 1.2s ease;
 }
 
-/* Cuando el vídeo está listo, ocultamos por completo la imagen para que NO se
-   mezclen (antes quedaban superpuestas). Sólo se ve el vídeo. */
-.hero__video-wrap.is-ready + .hero__bg-img {
+/* Video loaded hides fallback image */
+.hero__video-wrap + .hero__bg-img {
   opacity: 0;
+  transition: opacity 1s ease;
 }
 
 /* Floating instrument icons */
