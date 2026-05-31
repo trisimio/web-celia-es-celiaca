@@ -448,39 +448,64 @@
     });
   }
 
-  // ─── Hero video robustness ───
-  // Si el iframe de YouTube no carga (CSP, bloqueo, fallo de red), recargamos una vez tras 4s.
-  // Tambien forzamos un reload al recuperar foco si el documento estuvo oculto un rato (ahorro de bateria iOS).
+  // ─── Hero video DIFERIDO (clave para el LCP) ───
+  // El iframe de YouTube NO está en el HTML inicial. Lo inyectamos sólo tras
+  // la carga completa de la página + idle, y nunca en móvil/Data Saver/Reduce Motion.
+  // Así la imagen hero-bg.jpg es el LCP (rápido) y el vídeo es un extra progresivo.
   function initHeroVideo() {
-    var iframe = document.getElementById('heroVideo');
-    if (!iframe) return;
-    var vid = iframe.getAttribute('data-video-id');
+    var wrap = document.getElementById('heroVideoWrap');
+    if (!wrap) return;
+    var vid = wrap.getAttribute('data-video-id');
     if (!vid) return;
 
-    function buildSrc(extra) {
+    // No cargar el vídeo si: pantalla pequeña, ahorro de datos, o conexión lenta.
+    var smallScreen = window.matchMedia('(max-width: 768px)').matches;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var conn = navigator.connection || {};
+    var saveData = conn.saveData === true;
+    var slowNet = /2g/.test(conn.effectiveType || '');
+    if (smallScreen || reduceMotion || saveData || slowNet) return; // se queda solo la imagen
+
+    var injected = false;
+    function inject() {
+      if (injected) return;
+      injected = true;
+      var iframe = document.createElement('iframe');
+      iframe.className = 'hero__video';
+      iframe.id = 'heroVideo';
+      iframe.title = 'Vídeo de fondo — Celia es Celíaca';
+      iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+      iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+      iframe.setAttribute('aria-hidden', 'true');
+      iframe.tabIndex = -1;
       var params = 'autoplay=1&mute=1&loop=1&playlist=' + vid + '&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&enablejsapi=1';
-      if (extra) params += '&_=' + Date.now();
-      return 'https://www.youtube-nocookie.com/embed/' + vid + '?' + params;
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + vid + '?' + params;
+      wrap.appendChild(iframe);
+      // Revela el vídeo con un fundido cuando carga
+      iframe.addEventListener('load', function () { wrap.classList.add('is-ready'); }, { once: true });
     }
 
-    var loaded = false;
-    iframe.addEventListener('load', function () { loaded = true; }, { once: true });
-
-    // Fallback de carga (si la primera no carga en 4s, fuerza reload una vez)
-    setTimeout(function () {
-      if (!loaded) {
-        try { iframe.src = buildSrc(true); } catch (e) {}
+    function schedule() {
+      // Esperamos a que la página esté ociosa (no compite con el LCP ni la interacción)
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function () { setTimeout(inject, 600); }, { timeout: 3000 });
+      } else {
+        setTimeout(inject, 1500);
       }
-    }, 4000);
+    }
 
-    // Cuando la pestaña vuelve a primer plano tras >30s oculta, recargamos para reanudar autoplay
+    if (document.readyState === 'complete') schedule();
+    else window.addEventListener('load', schedule, { once: true });
+
+    // Reanudar autoplay si la pestaña vuelve tras estar oculta mucho tiempo
     var hiddenSince = 0;
     document.addEventListener('visibilitychange', function () {
+      var iframe = document.getElementById('heroVideo');
       if (document.visibilityState === 'hidden') {
         hiddenSince = Date.now();
-      } else if (hiddenSince && (Date.now() - hiddenSince) > 30000) {
+      } else if (iframe && hiddenSince && (Date.now() - hiddenSince) > 30000) {
         hiddenSince = 0;
-        try { iframe.src = buildSrc(true); } catch (e) {}
+        try { iframe.src = iframe.src.split('&_=')[0] + '&_=' + Date.now(); } catch (e) {}
       }
     });
   }

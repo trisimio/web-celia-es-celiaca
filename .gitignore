@@ -14,3 +14,4 @@ data/login-attempts.json
 data/admin-activity.log
 data/contact-rate.json
 data/backups/
+data/cache/

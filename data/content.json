@@ -63,7 +63,11 @@
       "spotifyId": "6AgOEWe1pN2qFFBN9IA7Rz",
       "spotifyUrl": "https://open.spotify.com/artist/2Sq78UsNGrY3Myqs1Tbu0d",
       "appleUrl": "https://music.apple.com/us/artist/celia-es-cel%C3%ADaca/1128918022",
-      "bandcampUrl": "https://celiaesceliaca.bandcamp.com"
+      "bandcampUrl": "https://celiaesceliaca.bandcamp.com",
+      "deezerUrl": "https://www.deezer.com/es/artist/10622691",
+      "amazonUrl": "https://music.amazon.es/search/Celia+es+Celiaca",
+      "youtubeMusicUrl": "https://music.youtube.com/channel/UCw60jpCcry5FCtTD14shYbg",
+      "soundcloudUrl": "https://soundcloud.com/celiaesceliaca"
     },
     "past": [
       {
@@ -155,6 +159,11 @@
         "id": "mwV5TG5TK5M",
         "title": "Brujas (Videoclip)",
         "thumb": "img/yt-brujas.jpg"
+      },
+      {
+        "id": "0m97AOnB7oA",
+        "title": "Portugal",
+        "thumb": "img/yt-portugal.jpg"
       }
     ]
   },

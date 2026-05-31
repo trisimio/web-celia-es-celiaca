@@ -407,10 +407,14 @@
       <div class="field"><span class="field-label">Portada</span>${renderImgPicker(f.image, src => { f.image = src; render(); })}</div>
       <div id="featDescSlot"></div>
       <div class="list-item__grid">
-        <label class="field"><span>Spotify Album ID (para el embed)</span><input class="input" data-k="spotifyId" value="${esc(f.spotifyId || '')}"></label>
-        <label class="field"><span>Spotify URL (artista)</span><input class="input" data-k="spotifyUrl" value="${esc(f.spotifyUrl || '')}"></label>
-        <label class="field"><span>Apple Music URL</span><input class="input" data-k="appleUrl" value="${esc(f.appleUrl || '')}"></label>
-        <label class="field"><span>Bandcamp URL</span><input class="input" data-k="bandcampUrl" value="${esc(f.bandcampUrl || '')}"></label>
+        <label class="field"><span>Spotify Album ID (para el reproductor incrustado)</span><input class="input" data-k="spotifyId" value="${esc(f.spotifyId || '')}"></label>
+        <label class="field"><span>Spotify (perfil artista)</span><input class="input" data-k="spotifyUrl" value="${esc(f.spotifyUrl || '')}"></label>
+        <label class="field"><span>Apple Music</span><input class="input" data-k="appleUrl" value="${esc(f.appleUrl || '')}"></label>
+        <label class="field"><span>YouTube Music</span><input class="input" data-k="youtubeMusicUrl" value="${esc(f.youtubeMusicUrl || '')}"></label>
+        <label class="field"><span>Amazon Music</span><input class="input" data-k="amazonUrl" value="${esc(f.amazonUrl || '')}"></label>
+        <label class="field"><span>Deezer</span><input class="input" data-k="deezerUrl" value="${esc(f.deezerUrl || '')}"></label>
+        <label class="field"><span>Bandcamp</span><input class="input" data-k="bandcampUrl" value="${esc(f.bandcampUrl || '')}"></label>
+        <label class="field"><span>SoundCloud</span><input class="input" data-k="soundcloudUrl" value="${esc(f.soundcloudUrl || '')}"></label>
       </div>
       <div class="field"><span class="field-label">Tracklist</span></div>
       <div class="tracks" id="featTracks"></div>

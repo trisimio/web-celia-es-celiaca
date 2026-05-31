@@ -31,6 +31,26 @@ ServerSignature Off
   # Forzar www no -> apex (mantiene celiaesceliaca.com sin www)
   RewriteCond %{HTTP_HOST} ^www\.celiaesceliaca\.com$ [NC]
   RewriteRule ^(.*)$ https://celiaesceliaca.com/$1 [R=301,L]
+
+  # ── WebP automático: si el navegador lo acepta y existe el .webp, servirlo ──
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_FILENAME} (?i)(.+)\.(jpe?g|png)$
+  RewriteCond %1.webp -f
+  RewriteRule (?i)(.+)\.(jpe?g|png)$ $1.webp [T=image/webp,E=webp_served:1,L]
+</IfModule>
+
+# Vary: Accept solo cuando servimos WebP (evita romper cachés de CDN)
+<IfModule mod_headers.c>
+  Header append Vary Accept env=webp_served
+  <FilesMatch "\.(jpe?g|png)$">
+    Header append Vary Accept
+  </FilesMatch>
+</IfModule>
+
+# MIME correcto para tipos que el servidor podría no conocer
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType application/manifest+json .webmanifest
 </IfModule>
 
 # ============================================================================

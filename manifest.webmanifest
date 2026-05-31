@@ -1,0 +1,17 @@
+{
+  "name": "Celia es Celíaca",
+  "short_name": "Celia es Celíaca",
+  "description": "Pop-rock alternativo y punk desde Madrid. Música sin gluten desde 2012.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#08080C",
+  "theme_color": "#08080C",
+  "lang": "es",
+  "categories": ["music", "entertainment"],
+  "icons": [
+    { "src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

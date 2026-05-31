@@ -1,4 +1,24 @@
 <?php
+// ── Page cache: sirve HTML pre-renderizado para reducir el TTFB (~820ms → ~30ms).
+//    Se invalida solo cuando cambian content.json, index.php, css o js.
+//    Sólo aplica a peticiones GET normales (no admin, no query params especiales).
+$__cacheable = ($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET'
+    && empty($_SERVER['QUERY_STRING']);
+$__cacheDir = __DIR__ . '/data/cache';
+if ($__cacheable) {
+    $__sig = @filemtime(__DIR__ . '/data/content.json') . '-'
+           . @filemtime(__FILE__) . '-'
+           . @filemtime(__DIR__ . '/css/style.css') . '-'
+           . @filemtime(__DIR__ . '/js/app.js');
+    $__cacheFile = $__cacheDir . '/page-' . md5($__sig) . '.html';
+    if (is_file($__cacheFile)) {
+        header('X-Cache: HIT');
+        readfile($__cacheFile);
+        exit;
+    }
+    ob_start(); // capturamos el render para guardarlo al final
+}
+
 // Render principal data-driven. Lee data/content.json y expone $C a las plantillas.
 $contentPath = __DIR__ . '/data/content.json';
 $C = json_decode(@file_get_contents($contentPath), true);
@@ -25,33 +45,48 @@ function rawhtml($s) { return (string)$s; } // contenido HTML confiado (editor d
   <meta name="theme-color" content="#08080C">
 
   <!-- Open Graph -->
+  <meta property="og:site_name" content="Celia es Celíaca">
   <meta property="og:title" content="Celia es Celíaca — Pop-Rock Alternativo desde Madrid">
   <meta property="og:description" content="Pop, rock y punk con melodías que pegan. Música sin gluten desde 2012. MUERTE AL PAN!">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.celiaesceliaca.com">
-  <meta property="og:image" content="https://www.subterfuge.com/wp-content/uploads/2025/05/Celia-es-celiaca-sugestion-web.jpg">
+  <meta property="og:type" content="music.musician">
+  <meta property="og:url" content="https://celiaesceliaca.com/">
+  <meta property="og:image" content="https://celiaesceliaca.com/img/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Celia es Celíaca — banda de pop-rock de Madrid">
   <meta property="og:locale" content="es_ES">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Celia es Celíaca">
+  <meta name="twitter:title" content="Celia es Celíaca — Pop-Rock Alternativo desde Madrid">
   <meta name="twitter:description" content="Pop, rock y punk con melodías que pegan. Música sin gluten desde 2012. MUERTE AL PAN!">
-  <meta name="twitter:image" content="https://www.subterfuge.com/wp-content/uploads/2025/05/Celia-es-celiaca-sugestion-web.jpg">
+  <meta name="twitter:image" content="https://celiaesceliaca.com/img/og-cover.jpg">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://www.celiaesceliaca.com/">
+  <link rel="canonical" href="https://celiaesceliaca.com/">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="img/logo.png">
-  <link rel="apple-touch-icon" href="img/logo.png">
+  <!-- Favicon + PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="Celia es Celíaca">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <!-- Fonts -->
+  <!-- Fonts (carga no-bloqueante para mejorar FCP/LCP) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 
-  <!-- Preload hero image -->
-  <link rel="preload" as="image" href="img/hero-bg.jpg">
+  <!-- Preconnects para terceros (vídeo/audio embebido) -->
+  <link rel="preconnect" href="https://www.youtube-nocookie.com">
+  <link rel="dns-prefetch" href="https://www.youtube-nocookie.com">
+  <link rel="dns-prefetch" href="https://i.ytimg.com">
+
+  <!-- Preload hero image (LCP) -->
+  <link rel="preload" as="image" href="img/hero-bg.jpg" fetchpriority="high">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css?v=<?= @filemtime(__DIR__ . '/css/style.css') ?: '1' ?>">
@@ -67,8 +102,8 @@ function rawhtml($s) { return (string)$s; } // contenido HTML confiado (editor d
     "@type": "MusicGroup",
     "name": "Celia es Celíaca",
     "alternateName": "CEC",
-    "url": "https://www.celiaesceliaca.com",
-    "image": "https://www.subterfuge.com/wp-content/uploads/2025/05/Celia-es-celiaca-sugestion-web.jpg",
+    "url": "https://celiaesceliaca.com",
+    "image": "https://celiaesceliaca.com/img/og-cover.jpg",
     "description": "Banda de pop-rock alternativo y punk de Madrid. Música sin gluten desde 2012.",
     "genre": ["Pop-Rock Alternativo", "Punk"],
     "foundingDate": "2012",
@@ -91,14 +126,60 @@ function rawhtml($s) { return (string)$s; } // contenido HTML confiado (editor d
     ],
     "sameAs": [
       "https://open.spotify.com/artist/2Sq78UsNGrY3Myqs1Tbu0d",
+      "https://music.apple.com/us/artist/celia-es-cel%C3%ADaca/1128918022",
+      "https://music.youtube.com/channel/UCw60jpCcry5FCtTD14shYbg",
+      "https://www.deezer.com/es/artist/10622691",
+      "https://soundcloud.com/celiaesceliaca",
+      "https://celiaesceliaca.bandcamp.com",
       "https://www.instagram.com/celiaesceliaca",
       "https://www.youtube.com/channel/UCw60jpCcry5FCtTD14shYbg",
-      "https://celiaesceliaca.bandcamp.com",
+      "https://www.tiktok.com/@celiaesceliaca",
       "https://x.com/celiaesceliaca",
-      "https://www.facebook.com/CeliaEsCelíaca"
+      "https://www.facebook.com/CeliaEsCeliaca"
     ]
   }
   </script>
+
+<?php
+// ── Structured data: conciertos próximos (MusicEvent → rich results de eventos) ──
+$upcoming = $C['concerts']['upcoming'] ?? [];
+if (!empty($upcoming)):
+?>
+  <script type="application/ld+json">
+  [
+<?php
+  $events = [];
+  foreach ($upcoming as $ev) {
+    $date = $ev['date'] ?? '';
+    if (!$date) continue;
+    $venue = $ev['venue'] ?? '';
+    $city  = $ev['city'] ?? '';
+    $url   = $ev['ticketsUrl'] ?? 'https://celiaesceliaca.com/#conciertos';
+    $events[] = json_encode([
+      '@context' => 'https://schema.org',
+      '@type' => 'MusicEvent',
+      'name' => 'Celia es Celíaca en ' . $venue,
+      'startDate' => $date . 'T21:00:00+02:00',
+      'eventStatus' => 'https://schema.org/EventScheduled',
+      'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
+      'location' => [
+        '@type' => 'Place',
+        'name' => $venue,
+        'address' => ['@type' => 'PostalAddress', 'addressLocality' => 'Madrid', 'addressCountry' => 'ES'],
+      ],
+      'image' => 'https://celiaesceliaca.com/img/og-cover.jpg',
+      'performer' => ['@type' => 'MusicGroup', 'name' => 'Celia es Celíaca'],
+      'organizer' => ['@type' => 'Organization', 'name' => 'Subterfuge Records', 'url' => 'https://www.subterfuge.com'],
+      'offers' => ['@type' => 'Offer', 'url' => $url, 'availability' => 'https://schema.org/InStock'],
+      'description' => $city,
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+  }
+  echo implode(",\n", $events);
+?>
+
+  ]
+  </script>
+<?php endif; ?>
 </head>
 <body>
 
@@ -188,11 +269,10 @@ function rawhtml($s) { return (string)$s; } // contenido HTML confiado (editor d
   <!-- ═══════════════════════════════════════════ -->
   <section class="hero" id="hero">
     <div class="hero__bg">
-      <div class="hero__video-wrap">
 <?php $vid = h($C['hero']['videoId'] ?? 'jxkv3uXwY_I'); ?>
-        <iframe class="hero__video" id="heroVideo" data-video-id="<?= $vid ?>" src="https://www.youtube-nocookie.com/embed/<?= $vid ?>?autoplay=1&mute=1&loop=1&playlist=<?= $vid ?>&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&enablejsapi=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Hero video - Celia es Celíaca" loading="eager"></iframe>
-      </div>
-      <img src="img/hero-bg.jpg" alt="" class="hero__bg-img" loading="eager" width="1280" height="500">
+      <!-- El iframe de YouTube se inyecta vía JS tras la carga (mejora LCP). La imagen es el fondo inmediato. -->
+      <div class="hero__video-wrap" id="heroVideoWrap" data-video-id="<?= $vid ?>"></div>
+      <img src="img/hero-bg.jpg" alt="Celia es Celíaca en directo" class="hero__bg-img" fetchpriority="high" decoding="async" width="1280" height="500">
       <div class="hero__noise"></div>
       <!-- Animated floating instruments -->
       <div class="hero__instruments" aria-hidden="true">
@@ -206,7 +286,7 @@ function rawhtml($s) { return (string)$s; } // contenido HTML confiado (editor d
     </div>
     <div class="hero__content">
       <h1 class="sr-only">Celia es Celíaca</h1>
-      <img src="img/logo-hd.png" alt="Celia es Celíaca" class="hero__logo" width="180" height="180">
+      <img src="img/logo-hd@2x.png" alt="Celia es Celíaca" class="hero__logo" width="260" height="260" fetchpriority="high" decoding="async">
       <p class="hero__label"><?= h($C['hero']['label']) ?></p>
       <p class="hero__tagline"><?= nl2html($C['hero']['tagline']) ?></p>
       <div class="hero__ctas">
@@ -257,17 +337,27 @@ function rawhtml($s) { return (string)$s; } // contenido HTML confiado (editor d
           </div>
 <?php endif; ?>
           <div class="album-hero__links">
-<?php if (!empty($featured['spotifyUrl'])): ?>            <a href="<?= h($featured['spotifyUrl']) ?>" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--spotify">Spotify</a>
-<?php endif; ?><?php if (!empty($featured['appleUrl'])): ?>            <a href="<?= h($featured['appleUrl']) ?>" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Apple Music</a>
-<?php endif; ?><?php if (!empty($featured['bandcampUrl'])): ?>            <a href="<?= h($featured['bandcampUrl']) ?>" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--outline">Bandcamp</a>
-<?php endif; ?>          </div>
+<?php
+  $platforms = [
+    ['key' => 'spotifyUrl',      'label' => 'Spotify',       'cls' => 'btn--spotify'],
+    ['key' => 'appleUrl',        'label' => 'Apple Music',   'cls' => 'btn--outline'],
+    ['key' => 'youtubeMusicUrl', 'label' => 'YouTube Music', 'cls' => 'btn--outline'],
+    ['key' => 'amazonUrl',       'label' => 'Amazon Music',  'cls' => 'btn--outline'],
+    ['key' => 'deezerUrl',       'label' => 'Deezer',        'cls' => 'btn--outline'],
+    ['key' => 'bandcampUrl',     'label' => 'Bandcamp',      'cls' => 'btn--outline'],
+    ['key' => 'soundcloudUrl',   'label' => 'SoundCloud',    'cls' => 'btn--outline'],
+  ];
+  foreach ($platforms as $pf):
+    if (empty($featured[$pf['key']])) continue;
+?>            <a href="<?= h($featured[$pf['key']]) ?>" target="_blank" rel="noopener noreferrer" class="btn btn--sm <?= $pf['cls'] ?>"><?= $pf['label'] ?></a>
+<?php endforeach; ?>          </div>
         </div>
       </div>
 
 <?php if (!empty($featured['spotifyId'])): ?>
       <!-- Spotify embed -->
       <div class="spotify-embed reveal">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/<?= h($featured['spotifyId']) ?>?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe title="Reproductor de Spotify — <?= h($featured['title'] ?? 'álbum') ?>" style="border-radius:12px" src="https://open.spotify.com/embed/album/<?= h($featured['spotifyId']) ?>?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
 <?php endif; ?>
 
@@ -720,3 +810,16 @@ if ($ig): ?>
   <script src="js/game.js?v=<?= @filemtime(__DIR__ . '/js/game.js') ?: '1' ?>" defer></script>
 </body>
 </html>
+<?php
+// ── Guardar el render en cache (si procede) ──
+if (!empty($__cacheable) && isset($__cacheFile)) {
+    $__html = ob_get_clean();
+    echo $__html;
+    if (!is_dir($__cacheDir)) @mkdir($__cacheDir, 0775, true);
+    // Limpiar caches antiguos (de versiones previas de content/css/js)
+    foreach (glob($__cacheDir . '/page-*.html') ?: [] as $__old) {
+        if ($__old !== $__cacheFile) @unlink($__old);
+    }
+    @file_put_contents($__cacheFile, $__html, LOCK_EX);
+}
+?>

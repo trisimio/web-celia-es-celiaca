@@ -18,8 +18,8 @@
   --white: #F0F0F5;
   --gray-100: #D0D0DD;
   --gray-200: #B0B0C0;
-  --gray-300: #707088;
-  --gray-400: #50506A;
+  --gray-300: #9090A8; /* contraste AA sobre fondos oscuros (6.4:1) */
+  --gray-400: #82829A; /* contraste AA (5.3:1) — antes #50506A fallaba (2.6:1) */
 
   /* Gradients */
   --gradient-brand: linear-gradient(135deg, var(--coral), var(--purple), var(--magenta));
@@ -562,6 +562,12 @@ figure {
   transform: translate(-50%, -50%);
   border: none;
   pointer-events: none;
+  opacity: 0;                 /* invisible hasta que cargue (carga diferida) */
+  transition: opacity 1.2s ease;
+}
+
+/* El vídeo aparece con fundido cuando termina de cargar */
+.hero__video-wrap.is-ready .hero__video {
   opacity: 0.2;
 }
 
@@ -572,14 +578,14 @@ figure {
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
-  opacity: 0.25;
+  opacity: 0.25;              /* fondo visible de inmediato — es el LCP */
   z-index: 0;
+  transition: opacity 1.2s ease;
 }
 
-/* Video loaded hides fallback image */
-.hero__video-wrap + .hero__bg-img {
-  opacity: 0;
-  transition: opacity 1s ease;
+/* Cuando el vídeo está listo, atenuamos un poco la imagen para que predomine el vídeo */
+.hero__video-wrap.is-ready + .hero__bg-img {
+  opacity: 0.12;
 }
 
 /* Floating instrument icons */
@@ -845,6 +851,10 @@ figure {
 .section {
   padding: var(--space-section) 0;
   position: relative;
+  /* El navegador difiere el render de secciones fuera de pantalla (mejora FCP/LCP).
+     contain-intrinsic-size reserva altura aproximada para evitar saltos de scroll. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 
 .section:nth-child(even) {
@@ -1467,7 +1477,7 @@ figure {
 }
 
 .concert-item--past {
-  opacity: 0.5;
+  opacity: 0.72; /* antes 0.5 — mataba el contraste de los textos (fallo AA) */
 }
 
 .concert-item--past .concert-item__venue,
@@ -1517,7 +1527,7 @@ figure {
   font-family: var(--font-mono);
   font-size: var(--size-xs);
   letter-spacing: 0.15em;
-  color: var(--gray-300);
+  color: var(--gray-200);
   text-transform: uppercase;
 }
 
@@ -1534,14 +1544,14 @@ figure {
 .concert-item__city {
   font-family: var(--font-mono);
   font-size: var(--size-xs);
-  color: var(--gray-300);
+  color: var(--gray-200);
   letter-spacing: 0.05em;
 }
 
 .concert-item__sold {
   font-family: var(--font-mono);
   font-size: var(--size-xs);
-  color: var(--gray-400);
+  color: var(--gray-200);
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
