@@ -2750,3 +2750,13 @@ address {
 @media (max-width: 640px) {
   .instagram-grid { grid-template-columns: 1fr; }
 }
+
+/* ─── Iconos de plataformas (Spotify, YouTube, etc.) en botones y pills ─── */
+.platform-icon { flex-shrink: 0; display: block; }
+.btn--platform { gap: 8px; }
+.btn--platform span,
+.social-pill span { line-height: 1; }
+.social-pill { gap: 8px; }
+.social-pill .platform-icon { width: 17px; height: 17px; }
+/* En el botón de Spotify (verde) el icono mantiene buen contraste */
+.btn--platform.btn--spotify .platform-icon { opacity: 1; }
