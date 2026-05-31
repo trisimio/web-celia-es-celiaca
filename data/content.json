@@ -390,42 +390,6 @@
   },
   "photos": [
     {
-      "src": "img/estudio-celia-voz.jpg",
-      "alt": "Celia grabando voces en el estudio",
-      "caption": "Grabando voces — Estudio 73",
-      "size": "wide"
-    },
-    {
-      "src": "img/celia-guitarra-acustica.jpg",
-      "alt": "Celia con guitarra acústica",
-      "caption": "Celia con la acústica",
-      "size": "tall"
-    },
-    {
-      "src": "img/estudio-celia-micro.jpg",
-      "alt": "Celia cantando frente al micrófono",
-      "caption": "Sesión de voces, Pretendientes Contundentes",
-      "size": "normal"
-    },
-    {
-      "src": "img/celia-retrato-estudio.jpg",
-      "alt": "Celia en el estudio de grabación",
-      "caption": "Celia en el estudio",
-      "size": "tall"
-    },
-    {
-      "src": "img/estudio-guitarra.jpg",
-      "alt": "Guitarra en el estudio de grabación",
-      "caption": "Guitarras en Estudio 73",
-      "size": "normal"
-    },
-    {
-      "src": "img/estudio-bateria.jpg",
-      "alt": "Batería en el estudio de grabación",
-      "caption": "A la batería",
-      "size": "normal"
-    },
-    {
       "src": "img/radio3-01.jpg",
       "alt": "Celia es Celíaca en Los Conciertos de Radio 3 — foto 01",
       "caption": "Los Conciertos de Radio 3 — 01",
@@ -544,6 +508,78 @@
       "alt": "Celia es Celíaca - directo Sala Siroco 3",
       "caption": "Directo Sala Siroco 3",
       "size": "normal"
+    },
+    {
+      "src": "img/estudio-celia-voz.jpg",
+      "alt": "Celia grabando voces en el estudio",
+      "caption": "Grabando voces — Estudio 73",
+      "size": "wide"
+    },
+    {
+      "src": "img/celia-guitarra-acustica.jpg",
+      "alt": "Celia con guitarra acústica",
+      "caption": "Celia con la acústica",
+      "size": "tall"
+    },
+    {
+      "src": "img/estudio-produccion.jpg",
+      "alt": "Celia y producción en la mesa de mezclas",
+      "caption": "En la mesa, Estudio 73",
+      "size": "normal"
+    },
+    {
+      "src": "img/celia-retrato-vestido.jpg",
+      "alt": "Retrato de Celia en el estudio",
+      "caption": "Celia",
+      "size": "tall"
+    },
+    {
+      "src": "img/estudio-celia-micro.jpg",
+      "alt": "Celia cantando frente al micrófono",
+      "caption": "Sesión de voces, Pretendientes Contundentes",
+      "size": "normal"
+    },
+    {
+      "src": "img/estudio-guitarra.jpg",
+      "alt": "Guitarra en el estudio de grabación",
+      "caption": "Guitarras en Estudio 73",
+      "size": "tall"
+    },
+    {
+      "src": "img/celia-mesa-mezclas.jpg",
+      "alt": "Celia escuchando en la mesa de mezclas",
+      "caption": "Escuchando la mezcla",
+      "size": "normal"
+    },
+    {
+      "src": "img/celia-retrato-estudio.jpg",
+      "alt": "Celia en el estudio de grabación",
+      "caption": "Celia en el estudio",
+      "size": "tall"
+    },
+    {
+      "src": "img/estudio-celia-voz-2.jpg",
+      "alt": "Celia grabando voces con auriculares",
+      "caption": "Tomas de voz",
+      "size": "wide"
+    },
+    {
+      "src": "img/celia-guitarra-tocando.jpg",
+      "alt": "Celia tocando la guitarra acústica",
+      "caption": "Celia a la guitarra",
+      "size": "tall"
+    },
+    {
+      "src": "img/estudio-bateria.jpg",
+      "alt": "Batería en el estudio de grabación",
+      "caption": "A la batería",
+      "size": "normal"
+    },
+    {
+      "src": "img/celia-retrato-manos.jpg",
+      "alt": "Retrato de Celia",
+      "caption": "Celia, retrato",
+      "size": "tall"
     }
   ],
   "contact": {

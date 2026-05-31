@@ -7,6 +7,9 @@ deploy.sh
 index.html.bak
 *.bak
 
+# Artefactos de pruebas visuales
+.playwright-mcp/
+
 # Datos sensibles del CMS — NUNCA subir
 data/secrets.php
 data/auth.php
